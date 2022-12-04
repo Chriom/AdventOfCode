@@ -6,7 +6,7 @@ internal class Program
 {
     private static void Main(string[] pArgs)
     {
-        IJour lJour = new Jour03(false);
+        IJour lJour = new Jour04();
 
         
         string lResultatUn = lJour.DonneResultatUn();

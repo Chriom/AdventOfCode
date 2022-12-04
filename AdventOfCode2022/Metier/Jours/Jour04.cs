@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode2022.Extension;
-using AdventOfCode2022.ObjetsMetier.Jour03;
+using AdventOfCode2022.ObjetsMetier.Jour04;
 
 namespace AdventOfCode2022.Metier.Jours
 {
-    public class Jour03 : AJour<ContenuSac>
+    public class Jour04 : AJour<Tache>
     {
-        public override int NumeroJour => 3;
+        public override int NumeroJour => 4;
 
         public override string DonneResultatUn()
         {
-            return _Entrees.Sum(o => o.PrioriteCharactereCommun)
+            return _Entrees.Count(o => o.UnDesElfsEstTotalementDansLaPlageDeLAutre)
                            .ToString();
         }
 
         public override string DonneResultatDeux()
         {
-            return _Entrees.SplitEnListe(3)
-                           .Select(o => new GroupeElf(o))
-                           .Sum(o => o.PrioriteBadge)
+            return _Entrees.Count(o => o.AAuMoinsUneSectionEnCommun)
                            .ToString();
         }
 
-
+        
     }
 }
