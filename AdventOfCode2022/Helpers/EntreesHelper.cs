@@ -8,12 +8,12 @@ using AdventOfCode2022.Interfaces;
 
 namespace AdventOfCode2022.Helpers
 {
-    internal static class EntreesHelper
+    public static class EntreesHelper
     {
-        
-        public static IEnumerable<T> ChargerEntrees<T>(int pJour, bool pModeTest = false)
+        public static bool EstEnmodeTest = false;
+        public static IEnumerable<T> ChargerEntrees<T>(int pJour)
         {
-            IEnumerable<string> lEntrees = _ChargerEntrees(pJour, pModeTest);
+            IEnumerable<string> lEntrees = _ChargerEntrees(pJour);
 
             IConvertisseurEntree<T> lConvertisseur = _DonneConvertisseur<T>();
 
@@ -25,16 +25,16 @@ namespace AdventOfCode2022.Helpers
             return lConvertisseur.ConvertirEntrees(lEntrees);
         }
 
-        private static IEnumerable<string> _ChargerEntrees(int pJour, bool pModeTest = false)
+        private static IEnumerable<string> _ChargerEntrees(int pJour)
         {
             string lChemin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..", "Entrees");
 
-            if (pModeTest)
+            if (EstEnmodeTest)
             {
                 lChemin = Path.Combine(lChemin, "Tests");
             }
 
-            lChemin = Path.Combine(lChemin, $"{pJour:D3}{(pModeTest ? "_Test" : string.Empty)}.txt");
+            lChemin = Path.Combine(lChemin, $"{pJour:D3}{(EstEnmodeTest ? "_Test" : string.Empty)}.txt");
 
             return System.IO.File.ReadAllLines(lChemin);
         }

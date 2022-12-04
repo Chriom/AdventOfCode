@@ -15,9 +15,9 @@ namespace AdventOfCode2022.Metier.Jours
 
         protected IEnumerable<T> _Entrees;
 
-        public AJour(bool pModeTest)
+        public AJour()
         {
-            _Entrees = EntreesHelper.ChargerEntrees<T>(NumeroJour, pModeTest);
+            _Entrees = EntreesHelper.ChargerEntrees<T>(NumeroJour);
         }
 
         public abstract string DonneResultatUn();

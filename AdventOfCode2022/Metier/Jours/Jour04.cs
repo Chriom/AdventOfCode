@@ -9,9 +9,6 @@ namespace AdventOfCode2022.Metier.Jours
 {
     public class Jour04 : AJour<Tache>
     {
-        public Jour04(bool pModeTest) : base(pModeTest)
-        { }
-
         public override int NumeroJour => 4;
 
         public override string DonneResultatUn()

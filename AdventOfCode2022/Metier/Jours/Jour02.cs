@@ -11,9 +11,6 @@ namespace AdventOfCode2022.Metier.Jours
     {
         public override int NumeroJour => 2;
 
-        public Jour02(bool pModeTest) : base(pModeTest)
-        { }
-
         public override string DonneResultatUn()
         {
             return _Entrees.Sum(o => o.Score)
