@@ -75,5 +75,21 @@ namespace AdventOfCode2022.Tests
 
             Assert.AreEqual(lJour.DonneResultatDeux(), "4");
         }
+
+        [TestMethod]
+        public void TestJour05_Probleme1()
+        {
+            IJour lJour = new Jour05();
+
+            Assert.AreEqual(lJour.DonneResultatUn(), "CMZ");
+        }
+
+        [TestMethod]
+        public void TestJour05_Probleme2()
+        {
+            IJour lJour = new Jour05();
+
+            Assert.AreEqual(lJour.DonneResultatDeux(), "MCD");
+        }
     }
 }
