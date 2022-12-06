@@ -41,7 +41,7 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour02();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "12");
+            Assert.AreEqual("12", lJour.DonneResultatDeux());
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour03();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "157");
+            Assert.AreEqual("157", lJour.DonneResultatUn());
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour03();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "70");
+            Assert.AreEqual("70", lJour.DonneResultatDeux());
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour04();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "2");
+            Assert.AreEqual("2", lJour.DonneResultatUn());
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour04();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "4");
+            Assert.AreEqual("4", lJour.DonneResultatDeux());
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour05();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "CMZ");
+            Assert.AreEqual("CMZ", lJour.DonneResultatUn());
         }
 
         [TestMethod]
@@ -89,7 +89,53 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour05();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "MCD");
+            Assert.AreEqual("MCD", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour06_Probleme1()
+        {
+            IJour lJour = new Jour06();
+            Assert.AreEqual("7", lJour.DonneResultatUn());
+
+            EntreesHelper.Numero = 2;
+            lJour = new Jour06();
+            Assert.AreEqual("5", lJour.DonneResultatUn());
+
+            EntreesHelper.Numero = 3;
+            lJour = new Jour06();
+            Assert.AreEqual("6", lJour.DonneResultatUn());
+
+            EntreesHelper.Numero = 4;
+            lJour = new Jour06();
+            Assert.AreEqual("10", lJour.DonneResultatUn());
+
+            EntreesHelper.Numero = 5;
+            lJour = new Jour06();
+            Assert.AreEqual("11", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour06_Probleme2()
+        {
+            IJour lJour = new Jour06();
+            Assert.AreEqual("19", lJour.DonneResultatDeux());
+
+            EntreesHelper.Numero = 2;
+            lJour = new Jour06();
+            Assert.AreEqual("23", lJour.DonneResultatDeux());
+
+            EntreesHelper.Numero = 3;
+            lJour = new Jour06();
+            Assert.AreEqual("23", lJour.DonneResultatDeux());
+
+            EntreesHelper.Numero = 4;
+            lJour = new Jour06();
+            Assert.AreEqual("29", lJour.DonneResultatDeux());
+
+            EntreesHelper.Numero = 5;
+            lJour = new Jour06();
+            Assert.AreEqual("26", lJour.DonneResultatDeux());
         }
     }
 }
