@@ -11,6 +11,9 @@ namespace AdventOfCode2022.Helpers
     public static class EntreesHelper
     {
         public static bool EstEnmodeTest = false;
+
+        public static int Numero = 1;
+
         public static IEnumerable<T> ChargerEntrees<T>(int pJour)
         {
             IEnumerable<string> lEntrees = _ChargerEntrees(pJour);
@@ -34,7 +37,7 @@ namespace AdventOfCode2022.Helpers
                 lChemin = Path.Combine(lChemin, "Tests");
             }
 
-            lChemin = Path.Combine(lChemin, $"{pJour:D3}{(EstEnmodeTest ? "_Test" : string.Empty)}.txt");
+            lChemin = Path.Combine(lChemin, $"{pJour:D3}{(EstEnmodeTest ? "_Test" : string.Empty)}{(Numero != 1 ? $"_{Numero:D2}" : string.Empty)}.txt");
 
             return System.IO.File.ReadAllLines(lChemin);
         }
