@@ -10,6 +10,7 @@ namespace AdventOfCode2022.Tests
         public TestJours()
         {
             EntreesHelper.EstEnmodeTest = true;
+            EntreesHelper.Numero = 1;
         }
 
         [TestMethod]
@@ -150,6 +151,20 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour07();
             Assert.AreEqual("24933642", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour08_Probleme1()
+        {
+            IJour lJour = new Jour08();
+            Assert.AreEqual("21", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour08_Probleme2()
+        {
+            IJour lJour = new Jour08();
+            Assert.AreEqual("8", lJour.DonneResultatDeux());
         }
     }
 }
