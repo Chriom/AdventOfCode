@@ -6,14 +6,14 @@ internal class Program
 {
     private static void Main(string[] pArgs)
     {
-        IJour lJour = new Jour10();
+        IJour lJour = new Jour11();
 
         
         string lResultatUn = lJour.DonneResultatUn();
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
 
-        lJour = new Jour10();
+        lJour = new Jour11();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
