@@ -1,6 +1,7 @@
 using AdventOfCode2022.Helpers;
 using AdventOfCode2022.Interfaces;
 using AdventOfCode2022.Metier.Jours;
+using AdventOfCode2022.ObjetsMetier.Jour13;
 
 namespace AdventOfCode2022.Tests
 {
@@ -231,6 +232,33 @@ namespace AdventOfCode2022.Tests
         {
             IJour lJour = new Jour12();
             Assert.AreEqual("29", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour13_CasTest()
+        {
+            Assert.IsTrue(new PairePaquets(1, new Paquet("[1,1,3,1,1]"), new Paquet("[1,1,5,1,1]")).EstDansLeBonOrdre, "Cas 1");
+            Assert.IsTrue(new PairePaquets(1, new Paquet("[[1],[2,3,4]]"), new Paquet("[[1],4]")).EstDansLeBonOrdre, "Cas 2");
+            Assert.IsFalse(new PairePaquets(1, new Paquet("[9]"), new Paquet("[[8,7,6]]")).EstDansLeBonOrdre, "Cas 3");
+            Assert.IsTrue(new PairePaquets(1, new Paquet("[[4,4],4,4]"), new Paquet("[[4,4],4,4,4]")).EstDansLeBonOrdre, "Cas 4");
+            Assert.IsFalse(new PairePaquets(1, new Paquet("[7,7,7,7]"), new Paquet("[7,7,7]")).EstDansLeBonOrdre, "Cas 5");
+            Assert.IsTrue(new PairePaquets(1, new Paquet("[]"), new Paquet("[3]")).EstDansLeBonOrdre, "Cas 6");
+            Assert.IsFalse(new PairePaquets(1, new Paquet("[[[]]]"), new Paquet("[[]]")).EstDansLeBonOrdre, "Cas 7");
+            Assert.IsFalse(new PairePaquets(1, new Paquet("[1,[2,[3,[4,[5,6,7]]]],8,9]"), new Paquet("[1,[2,[3,[4,[5,6,0]]]],8,9]")).EstDansLeBonOrdre, "Cas 8");
+        }
+
+       [TestMethod]
+        public void TestJour13_Probleme1()
+        {
+            IJour lJour = new Jour13();
+            Assert.AreEqual("13", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour13_Probleme2()
+        {
+            IJour lJour = new Jour13();
+            Assert.AreEqual("140", lJour.DonneResultatDeux());
         }
     }
 }
