@@ -260,5 +260,20 @@ namespace AdventOfCode2022.Tests
             IJour lJour = new Jour13();
             Assert.AreEqual("140", lJour.DonneResultatDeux());
         }
+
+        [TestMethod]
+        public void TestJour14_Probleme1()
+        {
+            IJour lJour = new Jour14();
+            Assert.AreEqual("24", lJour.DonneResultatUn());
+        }
+
+
+        [TestMethod]
+        public void TestJour14_Probleme2()
+        {
+            IJour lJour = new Jour14();
+            Assert.AreEqual("93", lJour.DonneResultatDeux());
+        }
     }
 }
