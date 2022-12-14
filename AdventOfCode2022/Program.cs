@@ -7,13 +7,13 @@ internal class Program
     private static void Main(string[] pArgs)
     {
         EntreesHelper.EstEnmodeTest = false;
-        IJour lJour = new Jour13();
+        IJour lJour = new Jour14();
 
         string lResultatUn = lJour.DonneResultatUn();
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
 
-        lJour = new Jour13();
+        lJour = new Jour14();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
