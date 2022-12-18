@@ -51,12 +51,17 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
         {
             get
             {
-                if (Suivant.Count == 0)
+                
+                lock (Suivant)
                 {
-                    return PressionLibererParValve;
-                }
+                    if (Suivant.Count == 0)
+                    {
+                        return PressionLibererParValve;
+                    }
 
-                return PressionLibererParValve + Suivant.Max(o => o.TotalePressionLibere);
+                    return PressionLibererParValve + Suivant.Max(o => o.TotalePressionLibere);
+                }
+                
             }
         }
     }

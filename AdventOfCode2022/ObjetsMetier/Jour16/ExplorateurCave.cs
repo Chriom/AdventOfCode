@@ -148,7 +148,17 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
             return lRoute.TotalePressionLibere;
         }
 
-        
+        private int _DonnePointPotentiel(string pCle, int pDistance, int pMinutesParent)
+        {
+            Valve lValve = _Valves[pCle];
+
+            if(pMinutesParent + pDistance + 1 < MINUTES_TOTAL)
+            {
+                return (MINUTES_TOTAL - pMinutesParent - pDistance - 1) * lValve.Pression;
+            }
+
+            return 0;
+        }
 
         private void _ExplorerAvecElephant(RouteAvecElephant pParent)
         {
@@ -184,26 +194,29 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
                         ValvesFermes = lValvesFermees,
                     };
 
-                    pParent.Suivant.Add(lRoute);
+                    lock (pParent.Suivant)
+                    {
+                        pParent.Suivant.Add(lRoute);
+                    }
                 }
                 else
                 {
                     //Ajout des detination de l'éléphant
-                    foreach (string lCleValve in pParent.ValveElephant.DistanceAutreValves.Keys)
+                    foreach (var lKVValve in pParent.ValveElephant.DistanceAutreValves.OrderByDescending(o => _DonnePointPotentiel(o.Key, o.Value, pParent.MinutesElephant)))
                     {
-                        if (pParent.ValvesFermes.Contains(lCleValve) || pParent.ValvePersonnage.Cle == lCleValve)
+                        if (pParent.ValvesFermes.Contains(lKVValve.Key) || pParent.ValvePersonnage.Cle == lKVValve.Key)
                         {
                             continue;
                         }
 
-                        int lDistance = pParent.ValveElephant.DistanceAutreValves[lCleValve];
+                        int lDistance = pParent.ValveElephant.DistanceAutreValves[lKVValve.Key];
 
                         if (pParent.MinutesElephant + lDistance >= MINUTES_TOTAL)
                         {
                             continue;
                         }
 
-                        Valve lValve = _Valves[lCleValve];
+                        Valve lValve = _Valves[lKVValve.Key];
 
                         RouteAvecElephant lRoute = new RouteAvecElephant()
                         {
@@ -220,7 +233,10 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
                             ValvesFermes = new HashSet<string>(lValvesFermees),
                         };
 
-                        pParent.Suivant.Add(lRoute);
+                        lock (pParent.Suivant)
+                        {
+                            pParent.Suivant.Add(lRoute);
+                        }
                     }
 
                     if(pParent.Suivant.Count == 0)
@@ -241,28 +257,31 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
                             ValvesFermes = new HashSet<string>(lValvesFermees),
                         };
 
-                        pParent.Suivant.Add(lRoute);
+                        lock (pParent.Suivant)
+                        {
+                            pParent.Suivant.Add(lRoute);
+                        }
                     }
                 }               
             }
             else
             {
                 //Parcours des destinations restante
-                foreach (string lCleValvePersonnage in pParent.ValvePersonnage.DistanceAutreValves.Keys)
+                foreach (var lKVValvePersonnage in pParent.ValvePersonnage.DistanceAutreValves.OrderByDescending(o =>_DonnePointPotentiel(o.Key, o.Value, pParent.MinutesPersonnage)))
                 {
-                    if (pParent.ValvesFermes.Contains(lCleValvePersonnage) || pParent.ValvePersonnage.Cle == lCleValvePersonnage)
+                    if (pParent.ValvesFermes.Contains(lKVValvePersonnage.Key) || pParent.ValvePersonnage.Cle == lKVValvePersonnage.Key)
                     {
                         continue;
                     }
 
-                    int lDistancePersonnage = pParent.ValvePersonnage.DistanceAutreValves[lCleValvePersonnage];
+                    int lDistancePersonnage = lKVValvePersonnage.Value;
 
                     if (pParent.MinutesPersonnage + lDistancePersonnage >= MINUTES_TOTAL)
                     {
                         continue;
                     }
 
-                    Valve lValvePersonnage = _Valves[lCleValvePersonnage];
+                    Valve lValvePersonnage = _Valves[lKVValvePersonnage.Key];
 
                     if (pParent.ValvesFermes.Contains(pParent.ValveElephant.Cle) == false && pParent.ValveElephant.PeutEtreFermee && pParent.MinutesElephant < MINUTES_TOTAL)
                     {
@@ -286,26 +305,29 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
                             ValvesFermes = lValvesFermees,
                         };
 
-                        pParent.Suivant.Add(lRoute);
+                        lock (pParent.Suivant)
+                        {
+                            pParent.Suivant.Add(lRoute);
+                        }
                     }
                     else
                     {
                         //L'éléphant se déplace
-                        foreach (string lCleValveElephant in pParent.ValveElephant.DistanceAutreValves.Keys)
+                        foreach (var lKVValveElephant in pParent.ValveElephant.DistanceAutreValves.OrderByDescending(o => _DonnePointPotentiel(o.Key, o.Value, pParent.MinutesElephant)))
                         {
-                            if (pParent.ValvesFermes.Contains(lCleValveElephant) || pParent.ValvePersonnage.Cle == lCleValveElephant || lCleValvePersonnage == lCleValveElephant)
+                            if (pParent.ValvesFermes.Contains(lKVValveElephant.Key) || pParent.ValvePersonnage.Cle == lKVValveElephant.Key || lKVValvePersonnage.Key == lKVValveElephant.Key)
                             {
                                 continue;
                             }
 
-                            int lDistanceElephant = pParent.ValveElephant.DistanceAutreValves[lCleValveElephant];
+                            int lDistanceElephant = lKVValveElephant.Value;
 
                             if (pParent.MinutesPersonnage + lDistanceElephant >= MINUTES_TOTAL)
                             {
                                 continue;
                             }
 
-                            Valve lValveElephant = _Valves[lCleValveElephant];
+                            Valve lValveElephant = _Valves[lKVValveElephant.Key];
                             HashSet<string> lValvesFermees = new HashSet<string>(pParent.ValvesFermes);
 
                             RouteAvecElephant lRoute = new RouteAvecElephant()
@@ -323,7 +345,10 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
                                 ValvesFermes = new HashSet<string>(lValvesFermees),
                             };
 
-                            pParent.Suivant.Add(lRoute);
+                            lock (pParent.Suivant)
+                            {
+                                pParent.Suivant.Add(lRoute);
+                            }
 
                         }
 
@@ -348,7 +373,11 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
                                 ValvesFermes = new HashSet<string>(lValvesFermees),
                             };
 
-                            pParent.Suivant.Add(lRoute);
+                            lock (pParent.Suivant)
+                            {
+                                pParent.Suivant.Add(lRoute);
+                            }
+                            
                         }
 
                     }
@@ -357,87 +386,52 @@ namespace AdventOfCode2022.ObjetsMetier.Jour16
             }
 
             //Parcours
-            int lMaxEnfant = 1;
-
-            List<RouteAvecElephant> lASupprimer = new List<RouteAvecElephant>();
-
             if(pParent.ActionElephant == ActionFaite.ApprentissagePachiderme)
             {
-                var lResultat = Parallel.ForEach(pParent.Suivant, o => _ExplorerAvecElephant(o));
+                int lNombreFini = 0;
+                int lTotal = pParent.Suivant.Count;
 
-                if(lResultat.IsCompleted)
+                var lResultat = Parallel.ForEach(pParent.Suivant, o =>
                 {
-                    foreach(RouteAvecElephant lRoute in pParent.Suivant)
-                    {
-                        int lPressionLibere = lRoute.TotalePressionLibere;
+                    _ExplorerAvecElephant(o);
+                    //Console.WriteLine($"fini {++lNombreFini} / {lTotal}");
+                });
 
-                        if (lPressionLibere < lMaxEnfant)
-                        {
-                            lASupprimer.Add(lRoute);
-                        }
-                        else
-                        {
-                            lMaxEnfant = lPressionLibere;
-                        }
-                    }
-                }
             }
             else
             {
                 foreach (RouteAvecElephant lRoute in pParent.Suivant)
                 {
                     _ExplorerAvecElephant(lRoute);
-
-                    int lPressionLibere = lRoute.TotalePressionLibere;
-
-                    if (lPressionLibere < lMaxEnfant)
-                    {
-                        lASupprimer.Add(lRoute);
-                    }
-                    else
-                    {
-                        lMaxEnfant = lPressionLibere;
-                    }
                 }
             }
-            foreach (RouteAvecElephant lRoute in pParent.Suivant)
-            {
 
+
+            if(pParent.Suivant.Count > 1)
+            {
+                lock (pParent.Suivant)
+                {
+                    pParent.Suivant = pParent.Suivant.OrderByDescending(o => o.TotalePressionLibere)
+                                                     .Take(1)
+                                                     .ToList();
+                }
                 
-                List<Task> lTasks = new List<Task>();
-
-                _ExplorerAvecElephant(lRoute);
-
-                int lPressionLibere = lRoute.TotalePressionLibere;
-
-                if (lPressionLibere < lMaxEnfant)
-                {
-                    lASupprimer.Add(lRoute);
-                }
-                else
-                {
-                    lMaxEnfant = lPressionLibere;
-                }
             }
 
-            foreach (RouteAvecElephant lRouteASupprime in lASupprimer)
-            {
-                pParent.Suivant.Remove(lRouteASupprime);
-            }
 
             _NombreParcours++;
 
-            if (_NombreParcours % 10000 == 0)
+            if (_NombreParcours % 10000000 == 0)
             {
-                Debug.WriteLine(_NombreParcours);
+                //Console.WriteLine(_NombreParcours);
 
-                RouteAvecElephant lRoute = pParent;
-                while(lRoute.Precedent != null)
-                {
-                    lRoute = lRoute.Precedent;
-                }
+                //RouteAvecElephant lRoute = pParent;
+                //while(lRoute.Precedent != null)
+                //{
+                //    lRoute = lRoute.Precedent;
+                //}
 
-                Debug.WriteLine($"Max actuel : {lRoute.TotalePressionLibere}");
+                //Console.WriteLine($"Max actuel : {lRoute.TotalePressionLibere}");
             }
         }
 
