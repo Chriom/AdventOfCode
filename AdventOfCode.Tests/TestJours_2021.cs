@@ -23,7 +23,7 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour01();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "7");
+            Assert.AreEqual("7", lJour.DonneResultatUn());
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour01();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "5");
+            Assert.AreEqual("5", lJour.DonneResultatDeux());
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour02();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "150");
+            Assert.AreEqual("150", lJour.DonneResultatUn());
         }
 
         [TestMethod]
@@ -47,7 +47,23 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour02();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "900");
+            Assert.AreEqual("900", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour03_Probleme1()
+        {
+            IJour lJour = new Jour03();
+
+            Assert.AreEqual("198", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour03_Probleme2()
+        {
+            IJour lJour = new Jour03();
+
+            Assert.AreEqual("230", lJour.DonneResultatDeux());
         }
     }
 }
