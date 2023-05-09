@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AdventOfCode.Interfaces;
 using AdventOfCode.ObjetsMetier.A2022.Jour14;
 
-namespace AdventOfCode.Metier.A2022.Convertisseur
+namespace AdventOfCode.Metier.A2022.Convertisseurs
 {
     internal class ConvertisseurJour14 : IConvertisseurEntree<CoordonneesRocher>
     {

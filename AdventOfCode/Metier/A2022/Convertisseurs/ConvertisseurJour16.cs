@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using AdventOfCode.Interfaces;
 using AdventOfCode.ObjetsMetier.A2022.Jour16;
 
-namespace AdventOfCode.Metier.A2022.Convertisseur
+namespace AdventOfCode.Metier.A2022.Convertisseurs
 {
     public class ConvertisseurJour16 : IConvertisseurEntree<Valve>
     {

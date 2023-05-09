@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode.Metier.A2022.Convertisseur
+namespace AdventOfCode.Metier.A2022.Convertisseurs
 {
     internal class ConvertisseurJour06 : IConvertisseurEntree<MessageEncode>
     {
