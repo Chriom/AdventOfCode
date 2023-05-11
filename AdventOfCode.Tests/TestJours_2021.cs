@@ -7,7 +7,7 @@ using AdventOfCode.Helpers;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Metier.A2021.Jours;
 
-namespace AdventOfCode.Tests
+namespace AdventOfCode.Tests.A2021
 {
     [TestClass]
     public class TestJours_2021
@@ -64,6 +64,22 @@ namespace AdventOfCode.Tests
             IJour lJour = new Jour03();
 
             Assert.AreEqual("230", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour04_Probleme1()
+        {
+            IJour lJour = new Jour04();
+
+            Assert.AreEqual("4512", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour04_Probleme2()
+        {
+            IJour lJour = new Jour04();
+
+            Assert.AreEqual("1924", lJour.DonneResultatDeux());
         }
     }
 }

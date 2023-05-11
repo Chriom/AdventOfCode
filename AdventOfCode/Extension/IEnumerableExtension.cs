@@ -28,6 +28,8 @@ namespace AdventOfCode.Extension
                     lListe = new List<T>();
                 }
             }
+
+            yield return lListe;
         }
 
     }

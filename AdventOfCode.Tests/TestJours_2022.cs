@@ -3,7 +3,7 @@ using AdventOfCode.Interfaces;
 using AdventOfCode.Metier.A2022.Jours;
 using AdventOfCode.ObjetsMetier.A2022.Jour13;
 
-namespace AdventOfCode.Tests
+namespace AdventOfCode.Tests.A2022
 {
     [TestClass]
     public class TestJours_2022
