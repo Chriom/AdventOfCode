@@ -29,7 +29,10 @@ namespace AdventOfCode.Extension
                 }
             }
 
-            yield return lListe;
+            if(lListe.Count > 0)
+            {
+                yield return lListe;
+            }            
         }
 
     }
