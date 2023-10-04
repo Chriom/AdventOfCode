@@ -35,5 +35,30 @@ namespace AdventOfCode.Extension
             }            
         }
 
+        public static int Produit<TSource>(this IEnumerable<TSource> pSource, Func<TSource, int> pSelecteur)
+        {
+            if (pSource == null)
+            {
+                throw new ArgumentNullException(nameof(pSource));
+            }
+
+            if (pSelecteur == null)
+            {
+                throw new ArgumentNullException(nameof(pSelecteur));
+            }
+
+            int lProduit = 1;
+
+            checked
+            {
+                foreach (TSource lElement in pSource)
+                {
+                    lProduit *= pSelecteur(lElement);
+                }
+            }
+
+            return lProduit;
+        }
+
     }
 }
