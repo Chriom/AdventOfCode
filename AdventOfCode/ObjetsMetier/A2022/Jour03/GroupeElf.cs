@@ -30,7 +30,7 @@ namespace AdventOfCode.ObjetsMetier.A2022.Jour03
                 else
                 {
                     lIntersect = lIntersect.Intersect(lSac.Contenu.Select(o => o))
-                                           .ToList(); ;
+                                           .ToList();
                 }
 
                 if (lIntersect.Count == 1)

@@ -3,7 +3,7 @@ using AdventOfCode.Interfaces;
 using AdventOfCode.Metier.A2022.Jours;
 using AdventOfCode.ObjetsMetier.A2022.Jour13;
 
-namespace AdventOfCode.Tests
+namespace AdventOfCode.Tests.A2022
 {
     [TestClass]
     public class TestJours_2022
@@ -19,7 +19,7 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour01();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "24000");
+            Assert.AreEqual("24000", lJour.DonneResultatUn());
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour01();
 
-            Assert.AreEqual(lJour.DonneResultatDeux(), "45000");
+            Assert.AreEqual("45000", lJour.DonneResultatDeux());
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace AdventOfCode.Tests
         {
             IJour lJour = new Jour02();
 
-            Assert.AreEqual(lJour.DonneResultatUn(), "15");
+            Assert.AreEqual("15", lJour.DonneResultatUn());
         }
 
         [TestMethod]
