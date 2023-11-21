@@ -11,4 +11,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Metier\A2023\Convertisseurs\" />
+    <Folder Include="Metier\A2023\Jours\" />
+    <Folder Include="ObjetsMetier\A2023\" />
+  </ItemGroup>
+
 </Project>
