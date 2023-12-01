@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AdventOfCode.Helpers;
+using AdventOfCode.Interfaces;
+using AdventOfCode.Metier.A2023.Jours;
 
-namespace AdventOfCode.Tests
+namespace AdventOfCode.Tests.A2023
 {
     [TestClass]
     public class TestJours_2023
@@ -14,6 +16,24 @@ namespace AdventOfCode.Tests
         {
             EntreesHelper.EstEnmodeTest = true;
             EntreesHelper.Numero = 1;
+        }
+
+        [TestMethod]
+        public void TestJour01_Probleme1()
+        {
+            IJour lJour = new Jour01();
+
+            Assert.AreEqual("142", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour01_Probleme2()
+        {
+            EntreesHelper.Numero = 2;
+            IJour lJour = new Jour01();
+            
+
+            Assert.AreEqual("281", lJour.DonneResultatDeux());
         }
     }
 }
