@@ -1,19 +1,18 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using AdventOfCode.Helpers;
+﻿using AdventOfCode.Helpers;
 using AdventOfCode.Interfaces;
-using AdventOfCode.Metier.A2021.Jours;
+using AdventOfCode.Metier.A2023.Jours;
 
 internal class Program
 {
     private static void Main(string[] pArgs)
     {
         EntreesHelper.EstEnmodeTest = false;
-        IJour lJour = new Jour10();
+        IJour lJour = new Jour01();
 
         string lResultatUn = lJour.DonneResultatUn();
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
-        lJour = new Jour10();
+        lJour = new Jour01();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
