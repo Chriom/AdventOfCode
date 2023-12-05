@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode.Helpers;
+using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Metier.A2021.Jours;
 

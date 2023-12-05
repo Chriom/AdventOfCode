@@ -1,4 +1,4 @@
-using AdventOfCode.Helpers;
+using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Metier.A2022.Jours;
 using AdventOfCode.ObjetsMetier.A2022.Jour13;

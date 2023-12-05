@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode.Extension;
+using AdventOfCode.Commun.Extension;
 using AdventOfCode.ObjetsMetier.A2023.Jour02;
 
 namespace AdventOfCode.Metier.A2023.Jours

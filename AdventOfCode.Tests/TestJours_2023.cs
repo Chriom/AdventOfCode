@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode.Helpers;
+using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
 using AdventOfCode.Metier.A2023.Jours;
 
@@ -82,6 +82,22 @@ namespace AdventOfCode.Tests.A2023
             IJour lJour = new Jour04();
 
             Assert.AreEqual("30", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour05_Probleme1()
+        {
+            IJour lJour = new Jour05();
+
+            Assert.AreEqual("35", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour05_Probleme2()
+        {
+            IJour lJour = new Jour05();
+
+            Assert.AreEqual("46", lJour.DonneResultatDeux());
         }
     }
 }

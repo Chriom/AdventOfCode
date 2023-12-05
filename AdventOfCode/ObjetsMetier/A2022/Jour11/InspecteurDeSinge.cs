@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode.Helpers;
-
-namespace AdventOfCode.ObjetsMetier.A2022.Jour11
+﻿namespace AdventOfCode.ObjetsMetier.A2022.Jour11
 {
     internal class InspecteurDeSinge
     {

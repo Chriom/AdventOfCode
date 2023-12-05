@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
-using AdventOfCode.Helpers;
+using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
 
 namespace AdventOfCode.Metier

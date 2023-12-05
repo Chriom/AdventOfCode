@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AdventOfCode.Interfaces;
 
-namespace AdventOfCode.Helpers
+namespace AdventOfCode.Commun.Helpers
 {
     public static class EntreesHelper
     {
@@ -20,7 +20,7 @@ namespace AdventOfCode.Helpers
 
             IConvertisseurEntree<T> lConvertisseur = _DonneConvertisseur<T>();
 
-            if(lConvertisseur == null)
+            if (lConvertisseur == null)
             {
                 throw new NullReferenceException($"{nameof(lConvertisseur)} Introuvable");
             }
@@ -39,16 +39,16 @@ namespace AdventOfCode.Helpers
 
             lChemin = Path.Combine(lChemin, $"{pJour:D3}{(EstEnmodeTest ? "_Test" : string.Empty)}{(Numero != 1 ? $"_{Numero:D2}" : string.Empty)}.txt");
 
-            return System.IO.File.ReadAllLines(lChemin);
+            return File.ReadAllLines(lChemin);
         }
 
         private static IConvertisseurEntree<T> _DonneConvertisseur<T>()
         {
-            foreach(Type lType in Assembly.GetExecutingAssembly().GetTypes())
+            foreach (Type lType in Assembly.GetExecutingAssembly().GetTypes())
             {
-                foreach(Type lInterface in lType.GetInterfaces())
+                foreach (Type lInterface in lType.GetInterfaces())
                 {
-                    if(lInterface.IsGenericType && lInterface.GetGenericTypeDefinition() == typeof(IConvertisseurEntree<>))
+                    if (lInterface.IsGenericType && lInterface.GetGenericTypeDefinition() == typeof(IConvertisseurEntree<>))
                     {
                         if (lInterface.GenericTypeArguments.Any(o => o == typeof(T)))
                         {
