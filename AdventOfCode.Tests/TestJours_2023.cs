@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -153,6 +154,39 @@ namespace AdventOfCode.Tests.A2023
             IJour lJour = new Jour09();
 
             Assert.AreEqual("2", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour10_Probleme1()
+        {
+            IJour lJour = new Jour10();
+
+            Assert.AreEqual("4", lJour.DonneResultatUn());
+
+            EntreesHelper.Numero = 2;
+
+            IJour lJour2 = new Jour10();
+
+            Assert.AreEqual("8", lJour2.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour10_Probleme2()
+        {
+            EntreesHelper.Numero = 3;
+            IJour lJour = new Jour10();
+
+            Assert.AreEqual("4", lJour.DonneResultatDeux());
+
+            EntreesHelper.Numero = 4;
+            IJour lJour2 = new Jour10();
+
+            Assert.AreEqual("8", lJour2.DonneResultatDeux());
+
+            EntreesHelper.Numero = 5;
+            IJour lJour3 = new Jour10();
+
+            Assert.AreEqual("10", lJour3.DonneResultatDeux());
         }
     }
 }

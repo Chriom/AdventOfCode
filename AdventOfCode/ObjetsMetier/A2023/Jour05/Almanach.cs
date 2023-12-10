@@ -26,8 +26,6 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour05
 
         public decimal DonneGraineAvecPlusPetitLieuxPlageValeur()
         {
-            decimal lValeurMinimal = decimal.MaxValue;
-
             List<Task<decimal>> lResultats = new List<Task<decimal>>();
 
             foreach (List<decimal> lGraines in Graines.SplitEnListe(2))

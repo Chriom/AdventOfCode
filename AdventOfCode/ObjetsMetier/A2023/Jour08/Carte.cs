@@ -52,7 +52,6 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour08
 
         public decimal DonneNombreEtapePourParcourirJusquaLaFinPourUnFamtome()
         {
-            decimal lNombreEtape = 0;
             List<Noeud> lNoeuds = _Noeuds.Where(o => o.EstAuDebutPourUnFamtome)
                                          .ToList();
 
