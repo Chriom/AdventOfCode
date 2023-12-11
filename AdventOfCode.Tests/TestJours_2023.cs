@@ -203,11 +203,11 @@ namespace AdventOfCode.Tests.A2023
         {
             Jour11 lJour = new Jour11();
 
-            Assert.AreEqual("1030", lJour.DonneResultatDeux(10));
+            Assert.AreEqual("1030", lJour.DonneResultatDeux(9));
 
             Jour11 lJour2 = new Jour11();
 
-            Assert.AreEqual("8410", lJour2.DonneResultatDeux(100));
+            Assert.AreEqual("8410", lJour2.DonneResultatDeux(99));
         }
     }
 }

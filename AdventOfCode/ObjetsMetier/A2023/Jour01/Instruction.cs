@@ -62,8 +62,16 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour01
                     lCleFin = lCle;
                 }
             }
-            int lIndexPremiereDigit = _LigneInstruction.IndexOf(_LigneInstruction.First(o => char.IsDigit(o)));
-            int lIndexDerniereDigit = _LigneInstruction.LastIndexOf(_LigneInstruction.Last(o => char.IsDigit(o)));
+
+            int lIndexPremiereDigit = int.MaxValue; 
+            int lIndexDerniereDigit = -1;
+
+            if(_LigneInstruction.Any(o => char.IsDigit(o)))
+            {
+                lIndexPremiereDigit = _LigneInstruction.IndexOf(_LigneInstruction.First(o => char.IsDigit(o)));
+                lIndexDerniereDigit = _LigneInstruction.LastIndexOf(_LigneInstruction.Last(o => char.IsDigit(o)));
+            }
+
             
             if (lIndexFin >= 0 && (lIndexFin + lDicoRemplacement[lCleFin].Length) > lIndexDerniereDigit)
             {

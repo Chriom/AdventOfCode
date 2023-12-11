@@ -13,7 +13,7 @@ internal class Program
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
         
-        lJour = new Jour11();
+        lJour = new Jour01();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");

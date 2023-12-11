@@ -26,7 +26,7 @@ namespace AdventOfCode.Metier.A2023.Jours
         {
             CarteStellaire lCarte = _Entrees.First();
 
-            lCarte.AppliquerExtensionUnivers(1000000);
+            lCarte.AppliquerExtensionUnivers(999999);
 
             return lCarte.DonneSommeDesDistances().ToString();
         }

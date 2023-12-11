@@ -18,12 +18,12 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour11
 
         public void DefinirExpensionEnX(decimal pTaille, int pIndiceExpension)
         {
-            PositionXApresExpension = PositionX + (pTaille* (pIndiceExpension -1));
+            PositionXApresExpension = PositionX + (pTaille * pIndiceExpension);
         }
 
         public void DefinirExpensionEnY(decimal pTaille, int pIndiceExpension)
         {
-            PositionYApresExpension = PositionY + (pTaille * (pIndiceExpension - 1));
+            PositionYApresExpension = PositionY + (pTaille * pIndiceExpension);
         }
 
         public decimal DistanceDe(Galaxie pAutre)
