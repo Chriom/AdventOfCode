@@ -7,7 +7,7 @@ internal class Program
     private static void Main(string[] pArgs)
     {
         EntreesHelper.EstEnmodeTest = false;
-        IJour lJour = new Jour11();
+        IJour lJour = new Jour12();
 
         string lResultatUn = lJour.DonneResultatUn();
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
