@@ -224,7 +224,7 @@ namespace AdventOfCode.Tests.A2023
         {
             IJour lJour = new Jour12();
 
-            Assert.AreEqual("1030", lJour.DonneResultatDeux());
+            Assert.AreEqual("525152", lJour.DonneResultatDeux());
 
         }
     }
