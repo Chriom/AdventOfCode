@@ -60,5 +60,30 @@ namespace AdventOfCode.Commun.Extension
             return lProduit;
         }
 
+        public static decimal Produit<TSource>(this IEnumerable<TSource> pSource, Func<TSource, decimal> pSelecteur)
+        {
+            if (pSource == null)
+            {
+                throw new ArgumentNullException(nameof(pSource));
+            }
+
+            if (pSelecteur == null)
+            {
+                throw new ArgumentNullException(nameof(pSelecteur));
+            }
+
+            decimal lProduit = 1;
+
+            checked
+            {
+                foreach (TSource lElement in pSource)
+                {
+                    lProduit *= pSelecteur(lElement);
+                }
+            }
+
+            return lProduit;
+        }
+
     }
 }
