@@ -32,5 +32,19 @@ namespace AdventOfCode.Commun.Helpers
 
             throw new Exception($"Le type {typeof(T)} ne contient pas de champ {pDescription}");
         }
+
+        public static string DonneDescription<T>(this T pEnum) where T : Enum
+        {
+            FieldInfo lChamps = typeof(T).GetField(pEnum.ToString());
+
+            DescriptionAttribute lDescription = (DescriptionAttribute)lChamps.GetCustomAttribute(typeof(DescriptionAttribute), true);
+
+            if(lDescription != null)
+            {
+                return lDescription.Description;
+            }
+
+            return pEnum.ToString();
+        }
     }
 }
