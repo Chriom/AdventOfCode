@@ -27,12 +27,12 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
         public int PositionX { get; set; }
         public int PositionY { get; set; }
         public int NombreAcces { get; set; }
-        public bool EstVisitee => Profondeur >= 0;
+        public virtual bool EstVisitee => Profondeur >= 0;
 
-        public abstract bool EstAuDepart { get; }
+        public abstract bool EstAuDepart { get; set; }
 
         public abstract bool EstALaFin { get; }
 
-        public abstract IEnumerable<T> DonneElementsAccessible(ParcoursBFS<T> pParcours);
+        public abstract IEnumerable<T> DonneElementsAccessible(ParcoursBFS<T> pParcours, int pXPrecedent, int pYPrecedent);
     }
 }

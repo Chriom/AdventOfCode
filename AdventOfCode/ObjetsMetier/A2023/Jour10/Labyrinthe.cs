@@ -253,6 +253,7 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour10
                 TypeTuyau.NordEtOuest => "╝",
                 TypeTuyau.Exterieur => "¤",
                 TypeTuyau.Interieur => "■",
+                TypeTuyau.Sol => " ",
 
             };
         }

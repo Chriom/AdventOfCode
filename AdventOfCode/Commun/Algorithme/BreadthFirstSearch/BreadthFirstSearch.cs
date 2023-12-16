@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode.ObjetsMetier.A2023.Jour10;
+using AdventOfCode.Commun.Helpers;
 
 namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
 {
@@ -13,6 +13,8 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
 
         private int _Hauteur;
         private int _Largeur;
+
+        public bool ModeDeTest { get; set; }
 
         public BreadthFirstSearch(T[][] pCases)
         {
@@ -31,19 +33,28 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
 
         public ParcoursBFS<T> ParcourirDepuisLeDepart()
         {
-            T lDepart = _DonnePremierElement();
-            lDepart.Profondeur = 0;
+            ElementBFSAParcourir<T> lDepart = new ElementBFSAParcourir<T>()
+            {
+                Element = _DonnePremierElement(),
+                OrigineX = -1,
+                OrigineY = -1,
+            };
 
-            Queue<T> lElementsAParcourir = new Queue<T>();
+            lDepart.Element.Profondeur = 0;
+
+            int lNombreTest = 0;
+
+            Queue<ElementBFSAParcourir<T>> lElementsAParcourir = new Queue<ElementBFSAParcourir<T>>();
             lElementsAParcourir.Enqueue(lDepart);
 
-            T lElement = lElementsAParcourir.Dequeue();
+            ElementBFSAParcourir<T> lElement = lElementsAParcourir.Dequeue();
 
             do
             {
-                lElement.NombreAcces++;
+                lElement.Element.NombreAcces++;
 
-                IEnumerable<T> lElementsSuivant = lElement.DonneElementsAccessible(_Parcours);
+                T lElementATester = lElement.Element;
+                IEnumerable<T> lElementsSuivant = lElementATester.DonneElementsAccessible(_Parcours, lElement.OrigineX, lElement.OrigineY);
                 
                 foreach(T lElementSuivant in lElementsSuivant)
                 {
@@ -53,8 +64,16 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                     }
                     else
                     {
-                        lElementSuivant.Profondeur = lElement.Profondeur + 1;
-                        lElementsAParcourir.Enqueue(lElementSuivant);
+                        lElementSuivant.Profondeur = lElementATester.Profondeur + 1;
+
+                        ElementBFSAParcourir<T> lSuivant = new ElementBFSAParcourir<T>()
+                        {
+                            Element = lElementSuivant,
+                            OrigineX = lElementATester.PositionX,
+                            OrigineY = lElementATester.PositionY
+                        };
+
+                        lElementsAParcourir.Enqueue(lSuivant);
                     }
                 }
 
@@ -67,9 +86,14 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                     lElement = lElementsAParcourir.Dequeue();
                 }
 
+                if ((ModeDeTest || EntreesHelper.EstEnmodeTest)  && (lNombreTest % 1000 == 0 || lElement == null))
+                {
+                    _DessinerGrille();
+                }
 
+                lNombreTest++;
 
-            } while (lElement != null && lElement.EstALaFin == false);
+            } while (lElement != null && lElement.Element.EstALaFin == false);
 
             return _Parcours;
         }
@@ -80,5 +104,32 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                                   .First(o => o.EstAuDepart);
         }
 
+        private void _DessinerGrille()
+        {
+            if(EntreesHelper.EstEnmodeTest == false)
+            {
+                Console.Clear();
+
+                foreach (T[] lLigne in _Parcours.Cases)
+                {
+                    Console.WriteLine(string.Join("", lLigne.Select(o => o.ToString())));
+                }
+            }
+            else
+            {
+                Debug.WriteLine("");
+                Debug.WriteLine(string.Join("", Enumerable.Repeat("-", _Largeur)));
+                Debug.WriteLine("");
+
+                foreach (T[] lLigne in _Parcours.Cases)
+                {
+                    Debug.WriteLine(string.Join("", lLigne.Select(o => o.ToString())));
+                }
+            }
+            
+            
+            
+            
+        }
     }
 }

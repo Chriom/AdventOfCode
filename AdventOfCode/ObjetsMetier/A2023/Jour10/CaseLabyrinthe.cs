@@ -11,7 +11,12 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour10
     {
         public TypeTuyau TypeCase { get; set; }
 
-        public override bool EstAuDepart => TypeCase == TypeTuyau.Depart;
+        public override bool EstAuDepart
+        {
+            get { return TypeCase == TypeTuyau.Depart; }
+            set { TypeCase = TypeTuyau.Depart; }
+        }
+        
 
         public override bool EstALaFin => false;
 
@@ -22,7 +27,7 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour10
             PositionY = pPositionY;
         }
 
-        public override IEnumerable<CaseLabyrinthe> DonneElementsAccessible(ParcoursBFS<CaseLabyrinthe> pParcours)
+        public override IEnumerable<CaseLabyrinthe> DonneElementsAccessible(ParcoursBFS<CaseLabyrinthe> pParcours, int pXPrecedent, int pYPrecedent)
         {
             if (TypeCase == TypeTuyau.Depart ||
                 TypeCase == TypeTuyau.NordEtSud ||
@@ -139,6 +144,24 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour10
             }
 
             return null;
+        }
+
+        public override string ToString()
+        {
+            return TypeCase switch
+            {
+                TypeTuyau.Depart => "S",
+                TypeTuyau.NordEtSud => "║",
+                TypeTuyau.EstEtOuest => "═",
+                TypeTuyau.SudEtEst => "╔",
+                TypeTuyau.SudEtOuest => "╗",
+                TypeTuyau.NordEtEst => "╚",
+                TypeTuyau.NordEtOuest => "╝",
+                TypeTuyau.Exterieur => "¤",
+                TypeTuyau.Interieur => "■",
+                TypeTuyau.Sol => " ",
+
+            };
         }
     }
 }

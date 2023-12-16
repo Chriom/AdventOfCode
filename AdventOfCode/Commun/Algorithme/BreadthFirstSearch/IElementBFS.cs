@@ -31,7 +31,7 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
         /// <summary>
         /// Indique si l'élement est le premier
         /// </summary>
-        bool EstAuDepart { get; }
+        bool EstAuDepart { get; set; }
 
         /// <summary>
         /// Indique si l'élement est une fin
@@ -46,6 +46,6 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
 
     public interface IElementBFS<T> where T : class, IElementBFS
     {
-        IEnumerable<T> DonneElementsAccessible(ParcoursBFS<T> pParcours);
+        IEnumerable<T> DonneElementsAccessible(ParcoursBFS<T> pParcours, int pXPrecedent, int pYPrecedent);
     }
 }

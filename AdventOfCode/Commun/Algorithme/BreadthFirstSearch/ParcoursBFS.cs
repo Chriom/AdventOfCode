@@ -11,5 +11,11 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
         public T[][] Cases { get; set; }
         public int Hauteur { get; set; }
         public int Largeur { get; set; }
+
+        public int DonneNombreDeCasesVisitees()
+        {
+            return Cases.SelectMany(o => o)
+                        .Count(o => o.EstVisitee);
+        }
     }
 }
