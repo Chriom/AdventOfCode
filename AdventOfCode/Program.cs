@@ -6,17 +6,24 @@ internal class Program
 {
     private static void Main(string[] pArgs)
     {
+        Console.WindowHeight = Console.LargestWindowHeight;
+        Console.WindowWidth = Console.LargestWindowWidth;
+
+
         EntreesHelper.EstEnmodeTest = false;
-        IJour lJour = new Jour16();
+        //EntreesHelper.Numero = 4;
+        IJour lJour = new Jour17();
 
         string lResultatUn = lJour.DonneResultatUn();
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
         
-        lJour = new Jour16();
+        lJour = new Jour17();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
+
+
 
         Console.Read();
     }

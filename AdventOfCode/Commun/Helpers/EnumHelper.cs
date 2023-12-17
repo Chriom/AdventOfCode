@@ -46,5 +46,13 @@ namespace AdventOfCode.Commun.Helpers
 
             return pEnum.ToString();
         }
+
+        public static IEnumerable<TEnum> DonneValeurs<TEnum>() where TEnum : struct, Enum
+        {
+            foreach(TEnum lValeur in Enum.GetValues<TEnum>())
+            {
+                yield return lValeur;
+            }
+        }
     }
 }
