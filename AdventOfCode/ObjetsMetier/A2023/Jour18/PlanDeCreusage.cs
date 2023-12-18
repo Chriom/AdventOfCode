@@ -1,4 +1,5 @@
-﻿using AdventOfCode.Commun.Helpers;
+﻿using AdventOfCode.Commun.Algorithme.ShoeLace;
+using AdventOfCode.Commun.Helpers;
 using AdventOfCode.ObjetsMetier.A2023.Jour09;
 using System;
 using System.Collections.Generic;
@@ -20,242 +21,61 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour18
 
         public decimal DonneNombreDeCasesCreusees()
         {
-            _CreuserTrou();
-            _CreuserLeVide();
-
-            return _DonneNombreDeCasesCreusees();
+            return _CalculerAireDeLaZone();
         }
 
         public decimal DonneNombreDeCasesCreuseesDepuisCouleur()
         {
             _MajSequence();
-            _CreuserTrou();
-            _CreuserLeVide();
-
-            return _DonneNombreDeCasesCreusees();
-        }
-
-        private int _Hauteur;
-        private int _Largeur;
-        private Case[][] _Trou;
-
-
-        private void _CreuserTrou()
-        {
-            _CreerTrou();
-
-            int lPositionX = _Largeur / 2;
-            int lPositionY = _Hauteur / 2;
-
-            _Trou[lPositionY][lPositionX].EstCreuse = true;
-
-            foreach(Sequence lSequence in _SequenceCreusage)
-            {
-                switch (lSequence.Sens)
-                {
-                    case Sens.Haut:
-                        for(int lIndex = 1; lIndex <= lSequence.NombreCases; lIndex++)
-                        {
-                            lPositionY--;
-                            _Trou[lPositionY][lPositionX].EstCreuse = true;
-
-                            AppliquerCouleur(lPositionX, lPositionY, lSequence.Couleur);
-                        }
-                        break;
-                    case Sens.Bas:
-                        for (int lIndex = 1; lIndex <= lSequence.NombreCases; lIndex++)
-                        {
-                            lPositionY++;
-                            _Trou[lPositionY][lPositionX].EstCreuse = true;
-
-                            AppliquerCouleur(lPositionX, lPositionY, lSequence.Couleur);
-                        }
-                        break;
-                    case Sens.Gauche:
-                        for (int lIndex = 1; lIndex <= lSequence.NombreCases; lIndex++)
-                        {
-                            lPositionX--;
-                            _Trou[lPositionY][lPositionX].EstCreuse = true;
-
-                            AppliquerCouleur(lPositionX, lPositionY, lSequence.Couleur);
-                        }
-                        break;
-                    case Sens.Droite:
-                        for (int lIndex = 1; lIndex <= lSequence.NombreCases; lIndex++)
-                        {
-                            lPositionX++;
-                            _Trou[lPositionY][lPositionX].EstCreuse = true;
-
-                            AppliquerCouleur(lPositionX, lPositionY, lSequence.Couleur);
-                        }
-                        break;
-                }
-            }
-
-            _DessinerTrou();
+            return _CalculerAireDeLaZone();
         }
 
 
-
-        private void _CreerTrou()
+        private decimal _CalculerAireDeLaZone()
         {
-            _Largeur = _SequenceCreusage.Where(o => o.Sens == Sens.Droite)
-                                               .Sum(o => o.NombreCases);
-            _Hauteur = _SequenceCreusage.Where(o => o.Sens == Sens.Bas)
-                                               .Sum(o => o.NombreCases);
-            _Largeur += 2;
-            _Largeur *= 2;
-            _Hauteur += 2;  
-            _Hauteur *= 2;
+            List<Point> lPoints = new List<Point>();
 
-            _Trou = new Case[_Hauteur][];
+            decimal lPositionX = 0;
+            decimal lPositionY = 0;
 
-            for (int lIndexLigne = 0; lIndexLigne < _Hauteur; lIndexLigne++)
+            //Position initiale
+            lPoints.Add(new Point(lPositionX, lPositionY));
+
+            foreach (Sequence lSequence in _SequenceCreusage)
             {
-                _Trou[lIndexLigne] = new Case[_Largeur];
-
-                for (int lIndexColonne = 0; lIndexColonne < _Largeur; lIndexColonne++)
+                Point lPoint = lSequence.Sens switch
                 {
-                    _Trou[lIndexLigne][lIndexColonne] = new Case();
-                }
-            }
-        }
+                    Sens.Droite => new Point(lPositionX + lSequence.NombreCases, lPositionY),
+                    Sens.Gauche => new Point(lPositionX - lSequence.NombreCases, lPositionY),
+                    Sens.Haut => new Point(lPositionX, lPositionY - lSequence.NombreCases),
+                    Sens.Bas => new Point(lPositionX, lPositionY + lSequence.NombreCases),
+                    _ => throw new NotImplementedException(),
+                };
 
-        private void AppliquerCouleur(int pX, int pY, Couleur pCouleur)
-        {
-            if (pX - 1 > 0)
-            {
-                _Trou[pY][pX - 1].Droite = pCouleur;
-            }
-            if (pX + 1 < _Largeur)
-            {
-                _Trou[pY][pX + 1].Gauche = pCouleur;
-            }
-            if (pY - 1 > 0)
-            {
-                _Trou[pY - 1][pX].Haut = pCouleur;
-            }
-            if (pY + 1 < _Hauteur)
-            {
-                _Trou[pY + 1][pX].Bas = pCouleur;
-            }
-        }
+                lPoints.Add(lPoint);
 
-        private void _CreuserLeVide()
-        {
-            bool lTermine = false;
-            for(int lIndexLigne = 0; lIndexLigne < _Hauteur; lIndexLigne++)
-            {
-                if (lTermine)
-                {
-                    break;   
-                }
-
-                for(int lIndexColonne = 0; lIndexColonne < _Largeur; lIndexColonne++)
-                {
-                    if (_Trou[lIndexLigne][lIndexColonne].EstCreuse)
-                    {
-                        //Creuse à partir de la diagonale bas
-                        _Creuser(lIndexColonne + 1, lIndexLigne + 1);
-                        lTermine = true;
-                        break;
-                    }                    
-                    
-                }
+                lPositionX = lPoint.X;
+                lPositionY = lPoint.Y;
             }
 
-            _DessinerTrou();
-        }
+            decimal lAire = ShoeLace.CalculerAire(lPoints);
 
-        private void _Creuser(int pPositionX, int pPositionY)
-        {
-            HashSet<string> lPositionEnCours = new HashSet<string>();
-            Queue<Position> lQueue = new Queue<Position>();
+            decimal lPerimetre = _SequenceCreusage.Sum(o => (decimal)o.NombreCases);
 
-            lQueue.Enqueue(new Position(pPositionX, pPositionY));
+            //https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Pick
+            //Le +1 est cadeau mais ça à l'air de marcher sur les exemples
+            return lAire + lPerimetre / 2 + 1;
 
-            Position lPosition = lQueue.Dequeue();
-            do
-            {
-                _Trou[lPosition.Y][lPosition.X].EstCreuse = true;
-
-                if(lPosition.X > 0 && _Trou[lPosition.Y][lPosition.X - 1].EstCreuse == false)
-                {
-                    if (lPositionEnCours.Add($"{lPosition.X - 1}|{lPosition.Y}"))
-                    {
-                        lQueue.Enqueue(new Position(lPosition.X - 1, lPosition.Y));
-                    }
-                }
-                if(lPosition.X + 1 < _Largeur && _Trou[lPosition.Y][lPosition.X + 1].EstCreuse == false)
-                {
-                    if (lPositionEnCours.Add($"{lPosition.X + 1}|{lPosition.Y}"))
-                    {
-                        lQueue.Enqueue(new Position(lPosition.X + 1, lPosition.Y));
-                    }
-                }
-                if(lPosition.Y > 0 && _Trou[lPosition.Y - 1][lPosition.X].EstCreuse == false)
-                {
-                    if (lPositionEnCours.Add($"{lPosition.X}|{lPosition.Y - 1}"))
-                    {
-                        lQueue.Enqueue(new Position(lPosition.X, lPosition.Y - 1));
-                    }
-                }
-                if(lPosition.Y + 1 < _Hauteur && _Trou[lPosition.Y + 1][lPosition.X].EstCreuse == false)
-                {
-                    if (lPositionEnCours.Add($"{lPosition.X}|{lPosition.Y + 1}"))
-                    {
-                        lQueue.Enqueue(new Position(lPosition.X, lPosition.Y + 1));
-                    }
-                }
-
-                if(lQueue.Count > 0)
-                {
-                    lPosition = lQueue.Dequeue();
-                }
-                else
-                {
-                    lPosition = null;
-                }
-
-            } while (lPosition != null);
-        }
-
-        private decimal _DonneNombreDeCasesCreusees()
-        {
-            return _Trou.SelectMany(o => o)
-                        .Count(o => o.EstCreuse);
         }
 
         private void _MajSequence()
         {
-            foreach(Sequence lSequence in _SequenceCreusage)
+            foreach (Sequence lSequence in _SequenceCreusage)
             {
                 lSequence.Sens = lSequence.Couleur.Sens;
                 lSequence.NombreCases = lSequence.Couleur.Mouvement;
             }
         }
 
-        private void _DessinerTrou()
-        {
-            return;
-            List<string> lLignes = new List<string>();
-
-            for(int lIndexLigne = 0; lIndexLigne< _Hauteur; lIndexLigne++)
-            {
-                StringBuilder lSB = new StringBuilder();
-                for(int lIndexColonne = 0; lIndexColonne < _Largeur; lIndexColonne++)
-                {
-                    lSB.Append(_Trou[lIndexLigne][lIndexColonne].EstCreuse ? "·" : "■");
-                }
-
-                lLignes.Add(lSB.ToString());
-            }
-
-            if(EntreesHelper.EstEnmodeTest == false)
-            {
-                System.IO.File.WriteAllLines(@$"C:\Temp\test_{DateTime.Now.Millisecond}.txt", lLignes);
-            }
-            Console.WriteLine(string.Join("\r\n", lLignes));
-        }
     }
 }

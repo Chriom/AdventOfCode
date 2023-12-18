@@ -23,5 +23,6 @@ namespace AdventOfCode.Commun.Helpers
 
             return PlusGrandCommunDiviseur(pNombre2, lTemp);
         }
+
     }
 }

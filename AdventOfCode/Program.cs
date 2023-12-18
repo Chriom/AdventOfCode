@@ -18,7 +18,7 @@ internal class Program
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
         
-        lJour = new Jour17();
+        lJour = new Jour18();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
