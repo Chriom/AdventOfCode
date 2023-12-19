@@ -99,5 +99,28 @@ namespace AdventOfCode.Commun.Utilitaires
         {
             return PlageValeur<T>.DonnePlageValeurDepuisBornes(T.Max(this.BorneInferieur, pPlage.BorneInferieur), T.Min(this.BorneSuperieur, pPlage.BorneSuperieur));
         }
+
+        public IEnumerable<PlageValeur<T>> DecouperPlage(T pBorneInferieur)
+        {
+            if(this.BorneInferieur >= pBorneInferieur || this.BorneSuperieur < pBorneInferieur)
+            {
+                //Pas dans la plage
+                yield return this;
+            }
+
+            yield return PlageValeur<T>.DonnePlageValeurDepuisBornes(this.BorneInferieur, pBorneInferieur);
+            yield return PlageValeur<T>.DonnePlageValeurDepuisBornes(pBorneInferieur + T.One, this.BorneSuperieur);
+
+        }
+
+        public PlageValeur<T> Copie()
+        {
+            return new PlageValeur<T>()
+            {
+                BorneInferieur = this.BorneInferieur,
+                BorneSuperieur = this.BorneSuperieur,
+                Distance = this.Distance,
+            };
+        }
     }
 }
