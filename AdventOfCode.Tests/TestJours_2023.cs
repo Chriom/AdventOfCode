@@ -359,5 +359,36 @@ namespace AdventOfCode.Tests.A2023
             Assert.AreEqual("11687500", lJour.DonneResultatUn());
         }
 
+        [TestMethod]
+        public void TestJour21_Probleme1()
+        {
+            IJour lJour = new Jour21();
+
+            Assert.AreEqual("16", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour22_Probleme1()
+        {
+            Jour21 lJour = new Jour21();
+            lJour.NombreEtapes = 10;
+
+            Assert.AreEqual("50", lJour.DonneResultatDeux());
+
+            lJour = new Jour21();
+            lJour.NombreEtapes = 50;
+
+            Assert.AreEqual("1594", lJour.DonneResultatDeux());
+
+            lJour = new Jour21();
+            lJour.NombreEtapes = 100;
+
+            Assert.AreEqual("6536", lJour.DonneResultatDeux());
+
+            //lJour = new Jour21();
+            //lJour.NombreEtapes = 500;
+
+            //Assert.AreEqual("167004", lJour.DonneResultatDeux());
+        }
     }
 }
