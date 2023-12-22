@@ -368,7 +368,7 @@ namespace AdventOfCode.Tests.A2023
         }
 
         [TestMethod]
-        public void TestJour22_Probleme1()
+        public void TestJour21_Probleme2()
         {
             Jour21 lJour = new Jour21();
             lJour.NombreEtapes = 10;
@@ -389,6 +389,22 @@ namespace AdventOfCode.Tests.A2023
             //lJour.NombreEtapes = 500;
 
             //Assert.AreEqual("167004", lJour.DonneResultatDeux());
+        }
+
+        [TestMethod]
+        public void TestJour22_Probleme1()
+        {
+            IJour lJour = new Jour22();
+
+            Assert.AreEqual("5", lJour.DonneResultatUn());
+        }
+
+        [TestMethod]
+        public void TestJour22_Probleme2()
+        {
+            IJour lJour = new Jour22();
+
+            Assert.AreEqual("7", lJour.DonneResultatDeux());
         }
     }
 }
