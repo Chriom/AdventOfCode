@@ -160,8 +160,8 @@ namespace AdventOfCode.ObjetsMetier.A2023.Jour10
                 TypeTuyau.Exterieur => "¤",
                 TypeTuyau.Interieur => "■",
                 TypeTuyau.Sol => " ",
-
-            };
+                _ => throw new Exception("Indéfini")
+            }; ;
         }
     }
 }
