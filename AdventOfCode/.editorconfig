@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0200: Supprimer l’expression lambda inutile
+csharp_style_prefer_method_group_conversion = false

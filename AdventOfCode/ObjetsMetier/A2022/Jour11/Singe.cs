@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode.Helpers;
+﻿using System.Diagnostics;
 
 namespace AdventOfCode.ObjetsMetier.A2022.Jour11
 {

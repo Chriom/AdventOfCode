@@ -1,0 +1,444 @@
+digraph "025_test"
+{
+
+bgcolor = "#ffffff"
+
+node [
+class = "node"
+,fillcolor = "#ff00ff",style = "filled"
+,width = "0.152778",height = "0.152778"
+,shape = "ellipse"
+,color = "#000000"
+,penwidth = "1"
+,"_vis_" = "label"
+];
+
+
+"jqt" [
+pos = "3.81944,-0.694444!"
+,fillcolor = "#ffe6a4",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "jqt"
+]
+
+"cmg" [
+pos = "2.0612,-1.1786!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "cmg"
+]
+
+"qnr" [
+pos = "1.6213,-1.052!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "qnr"
+]
+
+"rsh" [
+pos = "0.66972,-1.7993!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "rsh"
+]
+
+"bvb" [
+pos = "4.51389,-1.38889!"
+,fillcolor = "#ffe6a4",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "bvb"
+]
+
+"pzl" [
+pos = "1.4207,-1.466!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "pzl"
+]
+
+"nvd" [
+pos = "1.9601,-0.45833!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "nvd"
+]
+
+"frs" [
+pos = "1.2698,-0.86867!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "frs"
+]
+
+"xhk" [
+pos = "4.16667,-2.08333!"
+,fillcolor = "#ffe6a4",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "xhk"
+]
+
+"lsr" [
+pos = "0.56944,-1.16!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "lsr"
+]
+
+"ntq" [
+pos = "4.16667,-1.04167!"
+,fillcolor = "#ffe6a4",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "ntq"
+]
+
+"hfx" [
+pos = "3.47222,-1.73611!"
+,fillcolor = "#ffe6a4",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "hfx"
+]
+
+"rzs" [
+pos = "1.1478,-1.8714!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "rzs"
+]
+
+"lhk" [
+pos = "1.1161,-0.34466!"
+,fillcolor = "#aaaaff",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "lhk"
+]
+
+"rhn" [
+pos = "4.16667,-1.04167!"
+,fillcolor = "#ffe6a4",style = "filled"
+,width = "0.138889",height = "0.138889"
+,shape = "ellipse"
+,color = "black"
+,penwidth = "1"
+,xlabel = "rhn"
+]
+
+
+
+edge [
+class = "edge"
+,weight = "1"
+,penwidth = "1"
+,"_vis_" = "label"
+,"color" = "#a0a0a4"
+,"style" = "solid"
+];
+
+
+"qnr" -> "nvd" [id = "qnr-nvd"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rsh" -> "frs" [id = "rsh-frs"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rhn" -> "xhk" [id = "rhn-xhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"xhk" -> "hfx" [id = "xhk-hfx"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"ntq" -> "jqt" [id = "ntq-jqt"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rzs" -> "rsh" [id = "rzs-rsh"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"frs" -> "lsr" [id = "frs-lsr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"ntq" -> "xhk" [id = "ntq-xhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"ntq" -> "bvb" [id = "ntq-bvb"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"lsr" -> "lhk" [id = "lsr-lhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rzs" -> "cmg" [id = "rzs-cmg"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rhn" -> "hfx" [id = "rhn-hfx"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"jqt" -> "xhk" [id = "jqt-xhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"cmg" -> "nvd" [id = "cmg-nvd"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"bvb" -> "xhk" [id = "bvb-xhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"jqt" -> "nvd" [id = "jqt-nvd"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rzs" -> "lsr" [id = "rzs-lsr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"pzl" -> "lsr" [id = "pzl-lsr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"frs" -> "lhk" [id = "frs-lhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"cmg" -> "qnr" [id = "cmg-qnr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"cmg" -> "lhk" [id = "cmg-lhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"ntq" -> "hfx" [id = "ntq-hfx"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"nvd" -> "lhk" [id = "nvd-lhk"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"pzl" -> "nvd" [id = "pzl-nvd"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"cmg" -> "bvb" [id = "cmg-bvb"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"pzl" -> "hfx" [id = "pzl-hfx"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"bvb" -> "hfx" [id = "bvb-hfx"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rhn" -> "bvb" [id = "rhn-bvb"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rsh" -> "pzl" [id = "rsh-pzl"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rzs" -> "qnr" [id = "rzs-qnr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"jqt" -> "rhn" [id = "jqt-rhn"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"frs" -> "qnr" [id = "frs-qnr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+"rsh" -> "lsr" [id = "rsh-lsr"
+,dir=both
+,weight = "0.5"
+,penwidth = "0.5"
+,"color" = "black"
+,"style" = "solid"
+];
+
+
+}

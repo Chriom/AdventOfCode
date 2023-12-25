@@ -5,13 +5,13 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode.Extension
+namespace AdventOfCode.Commun.Extension
 {
     internal static class IEnumerableExtension
     {
         public static IEnumerable<IEnumerable<T>> SplitEnListe<T>(this IEnumerable<T> pEnumerable, int pNombreElements)
         {
-            if(pNombreElements <= 0)
+            if (pNombreElements <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(pNombreElements));
             }
@@ -22,17 +22,17 @@ namespace AdventOfCode.Extension
             {
                 lListe.Add(lElement);
 
-                if(lListe.Count == pNombreElements)
+                if (lListe.Count == pNombreElements)
                 {
                     yield return lListe;
                     lListe = new List<T>();
                 }
             }
 
-            if(lListe.Count > 0)
+            if (lListe.Count > 0)
             {
                 yield return lListe;
-            }            
+            }
         }
 
         public static int Produit<TSource>(this IEnumerable<TSource> pSource, Func<TSource, int> pSelecteur)
@@ -48,6 +48,31 @@ namespace AdventOfCode.Extension
             }
 
             int lProduit = 1;
+
+            checked
+            {
+                foreach (TSource lElement in pSource)
+                {
+                    lProduit *= pSelecteur(lElement);
+                }
+            }
+
+            return lProduit;
+        }
+
+        public static decimal Produit<TSource>(this IEnumerable<TSource> pSource, Func<TSource, decimal> pSelecteur)
+        {
+            if (pSource == null)
+            {
+                throw new ArgumentNullException(nameof(pSource));
+            }
+
+            if (pSelecteur == null)
+            {
+                throw new ArgumentNullException(nameof(pSelecteur));
+            }
+
+            decimal lProduit = 1;
 
             checked
             {
