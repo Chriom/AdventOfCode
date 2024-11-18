@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode.Metier.A2022.Convertisseurs
 {
-    internal class ConvertisseurJour05 : IConvertisseurEntree<GestionConteneurs>
+    internal class ConvertisseurJour05
     {
         private List<string> _Entrees;
 

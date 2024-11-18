@@ -13,6 +13,19 @@ namespace AdventOfCode.Metier.A2021.Jours
 
         public override int Annee => 2021;
 
+        protected override IEnumerable<Ligne> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+
+            foreach (string lEntree in pEntrees)
+            {
+                string[] lCoordonnees = lEntree.Split("->", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                int[] lDepart = lCoordonnees[0].Split(',').Select(o => int.Parse(o)).ToArray();
+                int[] lArrive = lCoordonnees[1].Split(',').Select(o => int.Parse(o)).ToArray();
+
+                yield return new Ligne(lDepart[0], lDepart[1], lArrive[0], lArrive[1]);
+            }
+        }
+
         public override string DonneResultatUn()
         {
             Plateau lPlateau = new Plateau(_Entrees.ToList());

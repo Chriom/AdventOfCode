@@ -18,11 +18,15 @@ namespace AdventOfCode.Metier
 
         public AJour()
         {
-            _Entrees = EntreesHelper.ChargerEntrees<T>(Annee, NumeroJour);
+            _Entrees = _ConvertirEntrees(EntreesHelper.ChargerEntrees(this.Annee, this.NumeroJour));
         }
+
+        protected abstract IEnumerable<T> _ConvertirEntrees(IEnumerable<string> pEntrees);
 
         public abstract string DonneResultatUn();
         public abstract string DonneResultatDeux();
+
+        
 
     }
 }

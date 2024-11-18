@@ -9,7 +9,7 @@ using AdventOfCode.ObjetsMetier.A2023.Jour19;
 
 namespace AdventOfCode.Metier.A2023.Convertisseurs
 {
-    public class ConvertisseurJour19 : IConvertisseurEntree<DonneesDeTravail>
+    public class ConvertisseurJour19
     {
         private Regex _RegexFlux = new Regex(@"(?<Element>[a-z])(?<Comparaison>[<>])(?<Nombre>[0-9]{1,}):(?<Destination>[A-z]{1,})");
         private Regex _RegexElement = new Regex(@"{x=(?<x>[0-9]{1,}),m=(?<m>[0-9]{1,}),a=(?<a>[0-9]{1,}),s=(?<s>[0-9]{1,})}");

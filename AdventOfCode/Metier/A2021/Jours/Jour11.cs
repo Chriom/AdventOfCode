@@ -13,6 +13,31 @@ namespace AdventOfCode.Metier.A2021.Jours
 
         public override int Annee => 2021;
 
+        protected override IEnumerable<PlanSousMarin> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            List<string> lLignes = pEntrees.ToList();
+
+            int lHauteur = lLignes.Count;
+            int lLargeur = lLignes.First().Length;
+
+            Octopus[][] lPlan = new Octopus[lHauteur][];
+
+
+            for (int lIndex = 0; lIndex < lHauteur; lIndex++)
+            {
+                lPlan[lIndex] = new Octopus[lLargeur];
+
+                string lLigne = lLignes[lIndex];
+
+                for (int lIndexLargeur = 0; lIndexLargeur < lLargeur; lIndexLargeur++)
+                {
+                    lPlan[lIndex][lIndexLargeur] = new Octopus(int.Parse(lLigne[lIndexLargeur].ToString()));
+                }
+            }
+
+
+            yield return new PlanSousMarin(lPlan, lHauteur, lLargeur);
+        }
         public override string DonneResultatUn()
         {
             PlanSousMarin lPlan = _Entrees.First();

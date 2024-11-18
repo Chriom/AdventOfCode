@@ -14,21 +14,7 @@ namespace AdventOfCode.Commun.Helpers
 
         public static int Numero = 1;
 
-        public static IEnumerable<T> ChargerEntrees<T>(int pAnnee, int pJour)
-        {
-            IEnumerable<string> lEntrees = _ChargerEntrees(pAnnee, pJour);
-
-            IConvertisseurEntree<T> lConvertisseur = _DonneConvertisseur<T>();
-
-            if (lConvertisseur == null)
-            {
-                throw new NullReferenceException($"{nameof(lConvertisseur)} Introuvable");
-            }
-
-            return lConvertisseur.ConvertirEntrees(lEntrees);
-        }
-
-        private static IEnumerable<string> _ChargerEntrees(int pAnnee, int pJour)
+        public static IEnumerable<string> ChargerEntrees(int pAnnee, int pJour)
         {
             string lChemin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..", "Entrees", pAnnee.ToString());
 
@@ -41,24 +27,6 @@ namespace AdventOfCode.Commun.Helpers
 
             return File.ReadAllLines(lChemin);
         }
-
-        private static IConvertisseurEntree<T> _DonneConvertisseur<T>()
-        {
-            foreach (Type lType in Assembly.GetExecutingAssembly().GetTypes())
-            {
-                foreach (Type lInterface in lType.GetInterfaces())
-                {
-                    if (lInterface.IsGenericType && lInterface.GetGenericTypeDefinition() == typeof(IConvertisseurEntree<>))
-                    {
-                        if (lInterface.GenericTypeArguments.Any(o => o == typeof(T)))
-                        {
-                            return (IConvertisseurEntree<T>)Activator.CreateInstance(lType);
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
+                
     }
 }

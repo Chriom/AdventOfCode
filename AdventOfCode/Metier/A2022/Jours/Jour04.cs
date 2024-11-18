@@ -12,6 +12,11 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 4;
         public override int Annee => 2022;
 
+        protected override IEnumerable<Tache> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            return pEntrees.Select(o => new Tache(o));
+        }
+
         public override string DonneResultatUn()
         {
             return _Entrees.Count(o => o.UnDesElfsEstTotalementDansLaPlageDeLAutre)

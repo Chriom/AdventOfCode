@@ -13,6 +13,11 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 3;
         public override int Annee => 2022;
 
+        protected override IEnumerable<ContenuSac> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            return pEntrees.Select(o => new ContenuSac(o));
+        }
+
         public override string DonneResultatUn()
         {
             return _Entrees.Sum(o => o.PrioriteCharactereCommun)

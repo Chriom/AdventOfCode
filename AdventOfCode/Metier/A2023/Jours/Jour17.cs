@@ -13,6 +13,24 @@ namespace AdventOfCode.Metier.A2023.Jours
 
         public override int Annee => 2023;
 
+        protected override IEnumerable<PiscineDelave> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            List<string> lEntrees = pEntrees.ToList();
+
+            int[][] lBassin = new int[lEntrees.Count][];
+
+
+            int lIndex = 0;
+            foreach (string lEntree in lEntrees)
+            {
+                lBassin[lIndex] = lEntree.Select(o => int.Parse(o.ToString()))
+                                         .ToArray();
+                lIndex++;
+            }
+
+            yield return new PiscineDelave(lBassin);
+        }
+
         public override string DonneResultatUn()
         {
             PiscineDelave lPiscine = _Entrees.First();

@@ -13,6 +13,14 @@ namespace AdventOfCode.Metier.A2023.Jours
 
         public override int Annee => 2023;
 
+        protected override IEnumerable<Procedure> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                yield return new Procedure(lEntree);
+            }
+        }
+
         public override string DonneResultatUn()
         {
             Procedure lProcedure = _Entrees.First();

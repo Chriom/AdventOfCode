@@ -13,6 +13,11 @@ namespace AdventOfCode.Metier.A2023.Jours
 
         public override int Annee => 2023;
 
+        protected override IEnumerable<CarteStellaire> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            yield return new CarteStellaire(pEntrees);
+        }
+
         public override string DonneResultatUn()
         {
             CarteStellaire lCarte = _Entrees.First();

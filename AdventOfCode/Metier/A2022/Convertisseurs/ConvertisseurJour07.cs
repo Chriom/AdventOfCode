@@ -8,7 +8,7 @@ using AdventOfCode.ObjetsMetier.A2022.Jour07;
 
 namespace AdventOfCode.Metier.A2022.Convertisseurs
 {
-    internal class ConvertisseurJour07 : IConvertisseurEntree<IEmplacementStockage>
+    internal class ConvertisseurJour07
     {
         private Dossier _DossierCourant = null;
 

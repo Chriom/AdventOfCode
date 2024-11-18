@@ -13,6 +13,16 @@ namespace AdventOfCode.Metier.A2023.Jours
         public override int NumeroJour => 7;
 
         public override int Annee => 2023;
+        
+        protected override IEnumerable<Main> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                string[] lSplit = lEntree.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+                yield return new Main(lSplit[0], int.Parse(lSplit[1]));
+            }
+        }
 
         public override string DonneResultatUn()
         {
