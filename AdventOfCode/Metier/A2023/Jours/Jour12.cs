@@ -17,6 +17,20 @@ namespace AdventOfCode.Metier.A2023.Jours
 
         public override int Annee => 2023;
 
+        protected override IEnumerable<SourceInconnu> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                string[] lEntreeSplit = lEntree.Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+                List<int> lTailles = lEntreeSplit[1].Split(",", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                                                    .Select(o => int.Parse(o))
+                                                    .ToList();
+
+                yield return new SourceInconnu(lEntreeSplit[0], lTailles);
+            }
+        }
+
         public override string DonneResultatUn()
         {
             return _Entrees.Sum(o => o.DonneNombreValide())

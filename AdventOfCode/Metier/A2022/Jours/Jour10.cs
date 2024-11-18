@@ -12,6 +12,14 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 10;
         public override int Annee => 2022;
 
+        protected override IEnumerable<IInstruction> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                yield return InstructionFactory.DonneInstruction(lEntree);
+            }
+        }
+
         public override string DonneResultatUn()
         {
             Processeur lProcesseur = new Processeur(_Entrees);

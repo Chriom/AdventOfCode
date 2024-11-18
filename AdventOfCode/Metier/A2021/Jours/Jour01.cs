@@ -13,6 +13,14 @@ namespace AdventOfCode.Metier.A2021.Jours
 
         public override int Annee => 2021;
 
+        protected override IEnumerable<Profondeur> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                yield return new Profondeur() { Mesure = int.Parse(lEntree) };
+            }
+        }
+
         public override string DonneResultatUn()
         {
             int lMesurePrecedente = int.MaxValue;

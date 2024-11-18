@@ -12,6 +12,24 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 9;
         public override int Annee => 2022;
 
+        protected override IEnumerable<Instruction> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                string[] lSplit = lEntree.Split(' ');
+                int lNombreEtape = int.Parse(lSplit[1]);
+
+                yield return lSplit[0] switch
+                {
+                    "U" => new Instruction(Direction.Haut, lNombreEtape),
+                    "D" => new Instruction(Direction.Bas, lNombreEtape),
+                    "L" => new Instruction(Direction.Gauche, lNombreEtape),
+                    "R" => new Instruction(Direction.Droite, lNombreEtape),
+                    _ => throw new Exception("Instruction illisible")
+                };
+            }
+        }
+
         public override string DonneResultatUn()
         {
             List<ResultatEtapeSimulation> lSimulation = SimulateurCorde.SimulerToutesLesInstructions(_Entrees, 2);

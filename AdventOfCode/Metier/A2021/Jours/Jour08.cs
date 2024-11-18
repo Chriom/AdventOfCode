@@ -13,6 +13,19 @@ namespace AdventOfCode.Metier.A2021.Jours
 
         public override int Annee => 2021;
 
+        protected override IEnumerable<Signal> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                string[] lSplit = lEntree.Split('|', StringSplitOptions.TrimEntries);
+
+                IEnumerable<string> lEntrees = lSplit[0].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.RemoveEmptyEntries);
+                IEnumerable<string> lSorties = lSplit[1].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.RemoveEmptyEntries);
+
+                yield return new Signal(lEntrees, lSorties);
+            }
+        }
+
         public override string DonneResultatUn()
         {
             int lNombreAnalyseSimple = 0;

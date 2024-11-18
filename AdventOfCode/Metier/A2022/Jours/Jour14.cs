@@ -12,6 +12,11 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 14;
         public override int Annee => 2022;
 
+        protected override IEnumerable<CoordonneesRocher> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            return pEntrees.Select(o => new CoordonneesRocher(o));
+        }
+
         public override string DonneResultatUn()
         {
             Plateau lPlateau = new Plateau(_Entrees.ToList());

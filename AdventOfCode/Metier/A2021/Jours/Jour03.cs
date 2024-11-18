@@ -13,6 +13,14 @@ namespace AdventOfCode.Metier.A2021.Jours
 
         public override int Annee => 2021;
 
+        protected override IEnumerable<Donnees> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            foreach (string lEntree in pEntrees)
+            {
+                yield return new Donnees(lEntree);
+            }
+        }
+
         public override string DonneResultatUn()
         {
             AnalyseurDeDonnees lAnalyseur = new AnalyseurDeDonnees(_Entrees);

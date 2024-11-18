@@ -12,6 +12,17 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 13;
         public override int Annee => 2022;
 
+        protected override IEnumerable<PairePaquets> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            List<string> lEntrees = pEntrees.ToList();
+            int lIndexPaire = 1;
+
+            for (int lIndex = 0; lIndex < lEntrees.Count; lIndex += 3)
+            {
+                yield return new PairePaquets(lIndexPaire++, new Paquet(lEntrees[lIndex]), new Paquet(lEntrees[lIndex + 1]));
+            }
+        }
+
         public override string DonneResultatUn()
         {
             return _Entrees.Where(o => o.EstDansLeBonOrdre)

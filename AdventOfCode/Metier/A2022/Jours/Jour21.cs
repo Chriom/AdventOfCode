@@ -12,6 +12,26 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 21;
         public override int Annee => 2022;
 
+        protected override IEnumerable<Singe> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            Dictionary<string, Singe> lSinges = new Dictionary<string, Singe>();
+
+            foreach (string lEntree in pEntrees)
+            {
+                Singe lSinge = new Singe(lEntree);
+
+                lSinges.Add(lSinge.Nom, lSinge);
+            }
+
+
+            foreach (Singe lSinge in lSinges.Values)
+            {
+                lSinge.AssocierSinges(lSinges);
+                yield return lSinge;
+            }
+
+        }
+
         public override string DonneResultatUn()
         {
             List<Singe> lSinges = _Entrees.ToList();

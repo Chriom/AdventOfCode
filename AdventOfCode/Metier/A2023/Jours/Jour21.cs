@@ -14,6 +14,24 @@ namespace AdventOfCode.Metier.A2023.Jours
 
         public override int Annee => 2023;
 
+        protected override IEnumerable<CarteJardin> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            List<string> lEntrees = pEntrees.ToList();
+
+            TypeCase[][] lCases = new TypeCase[lEntrees.Count][];
+
+
+            for (int lIndex = 0; lIndex < lEntrees.Count; lIndex++)
+            {
+                string lEntree = lEntrees[lIndex];
+                lCases[lIndex] = lEntree.Select(o => EnumHelper.DonneValeurDepuisDescription<TypeCase>(o.ToString()))
+                                        .ToArray();
+            }
+
+
+            yield return new CarteJardin(lCases);
+        }
+
         public override string DonneResultatUn()
         {
             CarteJardin lCarte = _Entrees.First();

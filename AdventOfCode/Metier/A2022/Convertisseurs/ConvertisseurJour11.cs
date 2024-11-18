@@ -9,7 +9,7 @@ using AdventOfCode.ObjetsMetier.A2022.Jour11;
 
 namespace AdventOfCode.Metier.A2022.Convertisseurs
 {
-    internal class ConvertisseurJour11 : IConvertisseurEntree<Singe>
+    internal class ConvertisseurJour11
     {
         public IEnumerable<Singe> ConvertirEntrees(IEnumerable<string> pEntrees)
         {

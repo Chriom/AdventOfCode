@@ -12,6 +12,38 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 20;
         public override int Annee => 2022;
 
+        protected override IEnumerable<Donnees> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            List<Donnees> lDonnees = pEntrees.Select((o, p) => new Donnees()
+            {
+                IndexDepart = p,
+                Valeur = decimal.Parse(o),
+            })
+                                              .ToList();
+
+            for (int lIndex = 0; lIndex < lDonnees.Count; lIndex++)
+            {
+                int lIndexPrecedent = lIndex - 1;
+                int lIndexSuivant = lIndex + 1;
+
+                Donnees lDonnee = lDonnees[lIndex];
+
+                if (lIndexPrecedent < 0)
+                {
+                    lIndexPrecedent = lDonnees.Count - 1;
+                }
+                if (lIndexSuivant == lDonnees.Count)
+                {
+                    lIndexSuivant = 0;
+                }
+
+                lDonnee.Precedent = lDonnees[lIndexPrecedent];
+                lDonnee.Suivant = lDonnees[lIndexSuivant];
+
+                yield return lDonnee;
+            }
+        }
+
         public override string DonneResultatUn()
         {
             ListeCirculaire lListe = new ListeCirculaire(_Entrees.ToList());

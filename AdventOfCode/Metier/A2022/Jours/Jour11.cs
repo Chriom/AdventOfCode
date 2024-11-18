@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdventOfCode.Metier.A2022.Convertisseurs;
 using AdventOfCode.ObjetsMetier.A2022.Jour11;
 
 namespace AdventOfCode.Metier.A2022.Jours
@@ -11,6 +12,11 @@ namespace AdventOfCode.Metier.A2022.Jours
     {
         public override int NumeroJour => 11;
         public override int Annee => 2022;
+
+        protected override IEnumerable<Singe> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            return new ConvertisseurJour11().ConvertirEntrees(pEntrees);
+        }
 
         public override string DonneResultatUn()
         {

@@ -13,6 +13,13 @@ namespace AdventOfCode.Metier.A2021.Jours
 
         public override int Annee => 2021;
 
+        protected override IEnumerable<int> _ConvertirEntrees(IEnumerable<string> pEntrees)
+        {
+            return pEntrees.First()
+                           .Split(',')
+                           .Select(o => int.Parse(o));
+        }
+
         public override string DonneResultatUn()
         {
             DeplaceurDeCrabe lDeplaceur = new DeplaceurDeCrabe(_Entrees.ToList());
