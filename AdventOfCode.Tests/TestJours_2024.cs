@@ -31,6 +31,14 @@ namespace AdventOfCode.Tests.A2024
             _Test(new Jour02(), "2", "4");
         }
 
+        [TestMethod]
+        public void TestJour03()
+        {
+            Assert.AreEqual("161", new Jour03().DonneResultatUn());
+            EntreesHelper.Numero = 2;
+            Assert.AreEqual("48", new Jour03().DonneResultatDeux());
+        }
+
 
         private void _Test(IJour pJour, string pResultat1, string pResultat2)
         {

@@ -12,13 +12,13 @@ internal class Program
 
         EntreesHelper.EstEnmodeTest = false;
 
-        IJour lJour = new Jour02();
+        IJour lJour = new Jour03();
 
         string lResultatUn = lJour.DonneResultatUn();
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
         
-        lJour = new Jour02();
+        lJour = new Jour03();
 
         string lResultatDeux = lJour.DonneResultatDeux();
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
