@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+
+# Ignorer tous les fichiers dans le dossier
+Entrees/*/*.*
+
+# Ne pas ignorer les sous-dossiers et leur contenu
+!Entrees/*/*/*
