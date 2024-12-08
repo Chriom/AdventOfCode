@@ -13,7 +13,7 @@ internal class Program
         EntreesHelper.EstEnmodeTest = false;
 
         Stopwatch lPartie1 = Stopwatch.StartNew();
-        IJour lJour = new Jour07();
+        IJour lJour = new Jour08();
 
         string lResultatUn = lJour.DonneResultatUn();
 
@@ -24,7 +24,7 @@ internal class Program
 
 
         Stopwatch lPartie2 = Stopwatch.StartNew();
-        lJour = new Jour07();
+        lJour = new Jour08();
 
         string lResultatDeux = lJour.DonneResultatDeux();
 
