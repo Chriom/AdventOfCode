@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AdventOfCode.Commun.Extension;
-using AdventOfCode.ObjetsMetier.A2024;
+using AdventOfCode.ObjetsMetier.A2024.Jour11;
 
 namespace AdventOfCode.Metier.A2024.Jours
 {

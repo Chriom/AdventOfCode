@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode.ObjetsMetier.A2024
+namespace AdventOfCode.ObjetsMetier.A2024.Jour11
 {
     public class Pierres
     {
@@ -20,7 +20,7 @@ namespace AdventOfCode.ObjetsMetier.A2024
         {
             decimal lTotal = 0;
 
-            foreach(int lPierre in _Pierres)
+            foreach (int lPierre in _Pierres)
             {
                 lTotal += _Clignoter(lPierre, pNombreClignotement);
             }
@@ -32,7 +32,7 @@ namespace AdventOfCode.ObjetsMetier.A2024
         {
             string lCle = $"{pValeurPierre}-{pNombreRestant}";
 
-            if(pNombreRestant == 0)
+            if (pNombreRestant == 0)
             {
                 return 1;
             }
@@ -51,7 +51,7 @@ namespace AdventOfCode.ObjetsMetier.A2024
             else if (pValeurPierre.ToString().Length % 2 == 0)
             {
                 string lNombre = pValeurPierre.ToString();
-                
+
                 decimal lPierre1 = decimal.Parse(lNombre.Substring(0, lNombre.Length / 2));
                 decimal lPierre2 = decimal.Parse(lNombre.Substring(lNombre.Length / 2));
 
