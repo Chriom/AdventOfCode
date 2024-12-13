@@ -126,6 +126,12 @@ namespace AdventOfCode.Tests.A2024
             Assert.AreEqual("436", new Jour12().DonneResultatDeux());
         }
 
+        [TestMethod]
+        public void TestJour13()
+        {
+            _Test(new Jour13(), "480", null);
+        }
+
         private void _Test(IJour pJour, string pResultat1, string pResultat2)
         {
             Assert.AreEqual(pResultat1, pJour.DonneResultatUn());
