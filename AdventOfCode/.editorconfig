@@ -1,4 +1,4 @@
 ﻿[*.cs]
 
-# IDE0200: Supprimer l’expression lambda inutile
-csharp_style_prefer_method_group_conversion = false
+# IDE0090: Utiliser 'new(...)'
+csharp_style_implicit_object_creation_when_type_is_apparent = false
