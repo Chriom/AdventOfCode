@@ -9,23 +9,24 @@ internal class Program
     {
         Console.WindowHeight = Console.LargestWindowHeight;
         Console.WindowWidth = Console.LargestWindowWidth;
-
-        EntreesHelper.EstEnmodeTest = false;
+        
+        //EntreesHelper.EstEnmodeTest = true;
+        //EntreesHelper.Numero = 4;
 
         Stopwatch lPartie1 = Stopwatch.StartNew();
-        IJour lJour = new Jour14();
+        IJour lJour = new Jour15();
         
 
         string lResultatUn = lJour.DonneResultatUn();
 
-        lPartie1.Stop();
+       lPartie1.Stop();
 
         Console.WriteLine($"Temps écoulé : {lPartie1.Elapsed}");
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
 
         Stopwatch lPartie2 = Stopwatch.StartNew();
-        lJour = new Jour14();
+        lJour = new Jour15();
 
         string lResultatDeux = lJour.DonneResultatDeux();
 
