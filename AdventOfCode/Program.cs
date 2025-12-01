@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
-using AdventOfCode.Metier.A2024.Jours;
+using AdventOfCode.Metier.A2025;
 
 internal class Program
 {
@@ -14,7 +14,7 @@ internal class Program
         //EntreesHelper.Numero = 2;
 
         Stopwatch lPartie1 = Stopwatch.StartNew();
-        IJour lJour = new Jour16();
+        IJour lJour = new Jour01();
         
 
         string lResultatUn = lJour.DonneResultatUn();
@@ -26,7 +26,7 @@ internal class Program
 
 
         Stopwatch lPartie2 = Stopwatch.StartNew();
-        lJour = new Jour16();
+        lJour = new Jour01();
 
         string lResultatDeux = lJour.DonneResultatDeux();
 
