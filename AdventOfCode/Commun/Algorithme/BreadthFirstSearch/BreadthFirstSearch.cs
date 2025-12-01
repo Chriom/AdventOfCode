@@ -113,7 +113,7 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                 {
                     lElement = pElementsAParcourir.Dequeue();
                 }
-
+                
                 if ((ModeDeTest || EntreesHelper.EstEnmodeTest) && (lNombreTest % 1000 == 0 || lElement == null))
                 {
                     _DessinerGrille();
@@ -144,7 +144,8 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
         {
             if(EntreesHelper.EstEnmodeTest == false)
             {
-                Console.Clear();
+                Console.CursorVisible = false;
+                Console.SetCursorPosition(0, 0);
 
                 foreach (T[] lLigne in _Parcours.Cases)
                 {
@@ -162,9 +163,6 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                     Debug.WriteLine(string.Join("", lLigne.Select(o => o.ToString())));
                 }
             }
-            
-            
-            
             
         }
     }
