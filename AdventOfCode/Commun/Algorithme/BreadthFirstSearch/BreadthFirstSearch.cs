@@ -31,32 +31,60 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
             };
         }
 
-        public ParcoursBFS<T> ParcourirDepuisLeDepart()
+        public ParcoursBFS<T> ParcourirDepuisLeDepart(int pPositionDepart = 0)
         {
             ElementBFSAParcourir<T> lDepart = new ElementBFSAParcourir<T>()
             {
-                Element = _DonnePremierElement(),
+                Element = _DonneNiemeElement(pPositionDepart),
                 OrigineX = -1,
                 OrigineY = -1,
             };
 
             lDepart.Element.Profondeur = 0;
 
-            int lNombreTest = 0;
-
             Queue<ElementBFSAParcourir<T>> lElementsAParcourir = new Queue<ElementBFSAParcourir<T>>();
             lElementsAParcourir.Enqueue(lDepart);
+            return _Parcourir(lElementsAParcourir);
+        }
 
-            ElementBFSAParcourir<T> lElement = lElementsAParcourir.Dequeue();
+        public ParcoursBFS<T> ParcoursDepuisTousLesDeparts()
+        {
+            Queue<ElementBFSAParcourir<T>> lElementsAParcourir = new Queue<ElementBFSAParcourir<T>>();
 
+            foreach(T lDepart in _DonneTousLesPremiersElements())
+            {
+                ElementBFSAParcourir<T> lElement = new ElementBFSAParcourir<T>()
+                {
+                    Element = lDepart,
+                    OrigineX = -1,
+                    OrigineY = -1,
+                };
+
+                lElement.Element.Profondeur = 0;
+
+                lElementsAParcourir.Enqueue(lElement);
+            }
+
+            return _Parcourir(lElementsAParcourir);
+        }
+
+        private ParcoursBFS<T> _Parcourir(Queue<ElementBFSAParcourir<T>> pElementsAParcourir)
+        {
+            if(pElementsAParcourir.Count == 0)
+            {
+                return _Parcours;
+            }
+
+            ElementBFSAParcourir<T> lElement = pElementsAParcourir.Dequeue();
+            int lNombreTest = 0;
             do
             {
                 lElement.Element.NombreAcces++;
 
                 T lElementATester = lElement.Element;
                 IEnumerable<T> lElementsSuivant = lElementATester.DonneElementsAccessible(_Parcours, lElement.OrigineX, lElement.OrigineY);
-                
-                foreach(T lElementSuivant in lElementsSuivant)
+
+                foreach (T lElementSuivant in lElementsSuivant)
                 {
                     if (lElementSuivant.EstVisitee)
                     {
@@ -73,20 +101,20 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                             OrigineY = lElementATester.PositionY
                         };
 
-                        lElementsAParcourir.Enqueue(lSuivant);
+                        pElementsAParcourir.Enqueue(lSuivant);
                     }
                 }
 
-                if (lElementsAParcourir.Count == 0)
+                if (pElementsAParcourir.Count == 0)
                 {
                     lElement = null;
                 }
                 else
                 {
-                    lElement = lElementsAParcourir.Dequeue();
+                    lElement = pElementsAParcourir.Dequeue();
                 }
-
-                if ((ModeDeTest || EntreesHelper.EstEnmodeTest)  && (lNombreTest % 1000 == 0 || lElement == null))
+                
+                if ((ModeDeTest || EntreesHelper.EstEnmodeTest) && (lNombreTest % 1000 == 0 || lElement == null))
                 {
                     _DessinerGrille();
                 }
@@ -98,17 +126,26 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
             return _Parcours;
         }
 
-        private T _DonnePremierElement()
+        private T _DonneNiemeElement(int pPosition)
         {
             return _Parcours.Cases.SelectMany(o => o)
-                                  .First(o => o.EstAuDepart);
+                                  .Where(o => o.EstAuDepart)
+                                  .Skip(pPosition)
+                                  .First();
+        }
+
+        private IEnumerable<T> _DonneTousLesPremiersElements()
+        {
+            return _Parcours.Cases.SelectMany(o => o)
+                                  .Where(o => o.EstAuDepart);
         }
 
         private void _DessinerGrille()
         {
             if(EntreesHelper.EstEnmodeTest == false)
             {
-                Console.Clear();
+                Console.CursorVisible = false;
+                Console.SetCursorPosition(0, 0);
 
                 foreach (T[] lLigne in _Parcours.Cases)
                 {
@@ -126,9 +163,6 @@ namespace AdventOfCode.Commun.Algorithme.BreadthFirstSearch
                     Debug.WriteLine(string.Join("", lLigne.Select(o => o.ToString())));
                 }
             }
-            
-            
-            
             
         }
     }

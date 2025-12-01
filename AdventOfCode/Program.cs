@@ -1,6 +1,7 @@
-﻿using AdventOfCode.Commun.Helpers;
+﻿using System.Diagnostics;
+using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
-using AdventOfCode.Metier.A2021.Jours;
+using AdventOfCode.Metier.A2024.Jours;
 
 internal class Program
 {
@@ -8,22 +9,31 @@ internal class Program
     {
         Console.WindowHeight = Console.LargestWindowHeight;
         Console.WindowWidth = Console.LargestWindowWidth;
+        
+        //EntreesHelper.EstEnmodeTest = true;
+        //EntreesHelper.Numero = 2;
 
-
-        EntreesHelper.EstEnmodeTest = false;
-        //EntreesHelper.Numero = 4;
-        IJour lJour = new Jour11();
+        Stopwatch lPartie1 = Stopwatch.StartNew();
+        IJour lJour = new Jour16();
+        
 
         string lResultatUn = lJour.DonneResultatUn();
+
+       lPartie1.Stop();
+
+        Console.WriteLine($"Temps écoulé : {lPartie1.Elapsed}");
         Console.WriteLine($"Numero 1 : \r\n{lResultatUn}");
 
-        
-        lJour = new Jour11();
+
+        Stopwatch lPartie2 = Stopwatch.StartNew();
+        lJour = new Jour16();
 
         string lResultatDeux = lJour.DonneResultatDeux();
+
+        lPartie2.Stop();
+
+        Console.WriteLine($"Temps écoulé : {lPartie2.Elapsed}");
         Console.WriteLine($"Numero 2 : \r\n{lResultatDeux}");
-
-
 
         Console.Read();
     }
