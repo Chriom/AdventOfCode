@@ -25,6 +25,12 @@ namespace AdventOfCode.Tests.A2025
             _Test(new Jour01(), "3", "6");
         }
 
+        [TestMethod]
+        public void TestJour02()
+        {
+            _Test(new Jour02(), "1227775554", "4174379265");
+        }
+
         private void _Test(IJour pJour, string pResultat1, string pResultat2)
         {
             Assert.AreEqual(pResultat1, pJour.DonneResultatUn());
@@ -34,5 +40,7 @@ namespace AdventOfCode.Tests.A2025
                 Assert.AreEqual(pResultat2, pJour.DonneResultatDeux());
             }
         }
+
+
     }
 }

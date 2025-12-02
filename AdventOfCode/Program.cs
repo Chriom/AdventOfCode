@@ -9,12 +9,14 @@ internal class Program
     {
         Console.WindowHeight = Console.LargestWindowHeight;
         Console.WindowWidth = Console.LargestWindowWidth;
-        
+
         //EntreesHelper.EstEnmodeTest = true;
         //EntreesHelper.Numero = 2;
 
+        var lInit = () => new Jour02();
+
         Stopwatch lPartie1 = Stopwatch.StartNew();
-        IJour lJour = new Jour01();
+        IJour lJour = lInit();
         
 
         string lResultatUn = lJour.DonneResultatUn();
@@ -26,7 +28,7 @@ internal class Program
 
 
         Stopwatch lPartie2 = Stopwatch.StartNew();
-        lJour = new Jour01();
+        lJour = lInit();
 
         string lResultatDeux = lJour.DonneResultatDeux();
 
