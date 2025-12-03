@@ -20,15 +20,21 @@ namespace AdventOfCode.Tests.A2025
         }
 
         [TestMethod]
-        public void TestJour01()
+        public void Test_Jour01()
         {
             _Test(new Jour01(), "3", "6");
         }
 
         [TestMethod]
-        public void TestJour02()
+        public void Test_Jour02()
         {
             _Test(new Jour02(), "1227775554", "4174379265");
+        }
+
+        [TestMethod]
+        public void Test_Jour03()
+        {
+            _Test(new Jour03(), "357", "3121910778619");
         }
 
         private void _Test(IJour pJour, string pResultat1, string pResultat2)
