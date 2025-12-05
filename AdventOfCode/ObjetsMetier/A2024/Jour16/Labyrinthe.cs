@@ -99,7 +99,7 @@ namespace AdventOfCode.ObjetsMetier.A2024.Jour16
                 else if (lMauvaisesRoutes.Contains(lHistoriqueATraiter.CleCreation))
                 {
                     //Passe au suivant
-                    string x = "nop";
+                    //string x = "nop";
                 }
                 else
                 {
@@ -303,6 +303,7 @@ namespace AdventOfCode.ObjetsMetier.A2024.Jour16
                             Direction.Droite => "> \t",
                             Direction.Bas => "v \t",
                             Direction.Gauche => "< \t",
+                            _ => throw new ArgumentOutOfRangeException(nameof(lCase.Direction)),
                         };
 
                         if (lCase.Score != int.MaxValue)

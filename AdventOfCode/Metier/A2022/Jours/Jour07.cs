@@ -13,8 +13,6 @@ namespace AdventOfCode.Metier.A2022.Jours
         public override int NumeroJour => 7;
         public override int Annee => 2022;
 
-        private Dossier _DossierCourant = null;
-
         protected override IEnumerable<IEmplacementStockage> _ConvertirEntrees(IEnumerable<string> pEntrees)
         {
             return new ConvertisseurJour07().ConvertirEntrees(pEntrees);

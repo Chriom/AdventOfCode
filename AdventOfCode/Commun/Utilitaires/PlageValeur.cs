@@ -16,6 +16,8 @@ namespace AdventOfCode.Commun.Utilitaires
 
         public T Distance { get; private set; }
 
+        public T NombreEntiersDansPlage => Distance + T.One + T.One;
+
 
         public static PlageValeur<T> DonnePlageValeurDepuisBorneEtDistance(T pBorneInferieur, T pDistance)
         {
@@ -91,6 +93,120 @@ namespace AdventOfCode.Commun.Utilitaires
                 return true;
             }
 
+            
+            //On devrait pas tombé dedans
+            throw new Exception("Plage - cas pas testé");
+        }
+
+        public bool PlageSontDedansOuSeTouche(PlageValeur<T> pPlage)
+        {
+            if (this.BorneInferieur < pPlage.BorneInferieur && this.BorneSuperieur < pPlage.BorneInferieur)
+            {
+                //Avant la plage testé
+                return false;
+            }
+
+            if (this.BorneInferieur < pPlage.BorneInferieur && this.BorneSuperieur > pPlage.BorneInferieur)
+            {
+                //Dépasse devant
+                return true;
+            }
+
+            if (this.BorneInferieur > pPlage.BorneInferieur && this.BorneSuperieur < pPlage.BorneSuperieur)
+            {
+                //Compris dedans
+                return true;
+            }
+
+            if (this.BorneInferieur < pPlage.BorneSuperieur && this.BorneSuperieur > pPlage.BorneSuperieur)
+            {
+                //Dépasse derriere
+                return true;
+            }
+
+            if (this.BorneInferieur > pPlage.BorneInferieur && this.BorneSuperieur > pPlage.BorneSuperieur)
+            {
+                //Après la plage testé
+                return false;
+            }
+
+            if (this.BorneInferieur < pPlage.BorneInferieur && this.BorneSuperieur > pPlage.BorneSuperieur)
+            {
+                //Englobe la plage testé
+                return true;
+            }
+
+            if (this.BorneInferieur == pPlage.BorneInferieur && this.BorneSuperieur == pPlage.BorneSuperieur)
+            {
+                //Plage identique
+                return true;
+            }
+
+
+            //Début égal
+            if (this.BorneInferieur == pPlage.BorneInferieur && this.BorneSuperieur < pPlage.BorneInferieur)
+            {
+                //touche devant
+                return true;
+            }
+
+            if (this.BorneInferieur == pPlage.BorneInferieur && this.BorneSuperieur > pPlage.BorneInferieur)
+            {
+                //Dépasse devant
+                return true;
+            }
+
+            if (this.BorneInferieur == pPlage.BorneInferieur && this.BorneSuperieur < pPlage.BorneSuperieur)
+            {
+                //Compris dedans
+                return true;
+            }
+
+            if (this.BorneInferieur == pPlage.BorneSuperieur && this.BorneSuperieur > pPlage.BorneSuperieur)
+            {
+                //touche derriere
+                return true;
+            }
+
+            if (this.BorneInferieur == pPlage.BorneInferieur && this.BorneSuperieur > pPlage.BorneSuperieur)
+            {
+                //touche après
+                return true;
+            }
+
+
+
+            //fin egal
+            if (this.BorneInferieur < pPlage.BorneInferieur && this.BorneSuperieur == pPlage.BorneInferieur)
+            {
+                //Avant la plage testé
+                return true;
+            }
+
+            if (this.BorneInferieur < pPlage.BorneInferieur && this.BorneSuperieur == pPlage.BorneInferieur)
+            {
+                //Dépasse devant
+                return true;
+            }
+
+            if (this.BorneInferieur > pPlage.BorneInferieur && this.BorneSuperieur == pPlage.BorneSuperieur)
+            {
+                //Compris dedans
+                return true;
+            }
+
+            if (this.BorneInferieur < pPlage.BorneSuperieur && this.BorneSuperieur == pPlage.BorneSuperieur)
+            {
+                //Dépasse derriere
+                return true;
+            }
+
+            if (this.BorneInferieur > pPlage.BorneInferieur && this.BorneSuperieur == pPlage.BorneSuperieur)
+            {
+                //Après la plage testé
+                return true;
+            }
+
             //On devrait pas tombé dedans
             throw new Exception("Plage - cas pas testé");
         }
@@ -112,6 +228,20 @@ namespace AdventOfCode.Commun.Utilitaires
             yield return PlageValeur<T>.DonnePlageValeurDepuisBornes(pBorneInferieur + T.One, this.BorneSuperieur);
 
         }
+
+        public IEnumerable<PlageValeur<T>> EnglobePlageSiPossible(PlageValeur<T> pPlage)
+        {
+            if (PlageSontDedansOuSeTouche(pPlage) == false)
+            {
+                //Les plages ne se coupent pas
+                yield return this;
+                yield return pPlage;
+                yield break;
+            }
+
+            yield return DonnePlageValeurDepuisBornes(T.Min(this.BorneInferieur, pPlage.BorneInferieur), T.Max(this.BorneSuperieur, pPlage.BorneSuperieur));
+        }
+
 
         public PlageValeur<T> Copie()
         {

@@ -16,7 +16,7 @@ namespace AdventOfCode.Commun.Helpers
 
         public static IEnumerable<string> ChargerEntrees(int pAnnee, int pJour)
         {
-            string lChemin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..", "Entrees", pAnnee.ToString());
+            string lChemin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\..\\", "Entrees", pAnnee.ToString());
 
             if (EstEnmodeTest)
             {
