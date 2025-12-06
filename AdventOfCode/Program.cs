@@ -13,7 +13,7 @@ internal class Program
         //EntreesHelper.EstEnmodeTest = true;
         //EntreesHelper.Numero = 2;
 
-        var lInit = () => new Jour05();
+        var lInit = () => new Jour06();
 
         Stopwatch lPartie1 = Stopwatch.StartNew();
         IJour lJour = lInit();
