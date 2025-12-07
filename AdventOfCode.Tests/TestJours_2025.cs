@@ -55,6 +55,13 @@ namespace AdventOfCode.Tests.A2025
             _Test(new Jour06(), "4277556", "3263827");
         }
 
+        [TestMethod]
+        public void Test_Jour07()
+        {
+            _Test(new Jour07(), "21", "40");
+        }
+
+
         private void _Test(IJour pJour, string pResultat1, string pResultat2)
         {
             Assert.AreEqual(pResultat1, pJour.DonneResultatUn());
