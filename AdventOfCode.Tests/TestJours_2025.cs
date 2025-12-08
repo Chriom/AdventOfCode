@@ -1,11 +1,12 @@
 ﻿using AdventOfCode.Commun.Helpers;
 using AdventOfCode.Interfaces;
+using AdventOfCode.Metier;
+using AdventOfCode.Metier.A2025;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdventOfCode.Metier.A2025;
 
 namespace AdventOfCode.Tests.A2025
 {
@@ -59,6 +60,13 @@ namespace AdventOfCode.Tests.A2025
         public void Test_Jour07()
         {
             _Test(new Jour07(), "21", "40");
+        }
+
+        [TestMethod]
+        public void Test_Jour08()
+        {
+            Assert.AreEqual("40", new Jour08().DonneResultatUn());
+            Assert.AreEqual("25272", new Jour08().DonneResultatDeux());
         }
 
 

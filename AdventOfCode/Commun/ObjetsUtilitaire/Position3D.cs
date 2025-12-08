@@ -23,6 +23,11 @@ namespace AdventOfCode.Commun.ObjetsUtilitaire
         }
 
         public string Cle => $"{X}|{Y}|{Z}";
+
+        public decimal DistanceDe(Position3D<T> pPositionAutre)
+        {
+            return (decimal)Math.Sqrt(Math.Pow((double.CreateChecked(this.X - pPositionAutre.X)), 2) + Math.Pow((double.CreateChecked(this.Y - pPositionAutre.Y)), 2) + Math.Pow((double.CreateChecked(this.Z - pPositionAutre.Z)), 2));
+        }
     }
 
 
