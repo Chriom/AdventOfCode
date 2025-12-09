@@ -252,5 +252,90 @@ namespace AdventOfCode.Commun.Utilitaires
                 Distance = this.Distance,
             };
         }
+
+        public static List<PlageValeur<T>> FusionnerAuMaximumLesPlages(List<PlageValeur<T>> pPlages)
+        {
+            if(pPlages.Count <= 1)
+            {
+                return pPlages;
+            }
+
+            int lIndexGlobal = 0;
+            bool lFin = false;
+            List<PlageValeur<T>> lPlages = pPlages.OrderBy(o => o.BorneInferieur).ToList();
+
+            do
+            {
+                if(lPlages.Count == 1)
+                {
+                    break;
+                }
+
+                lPlages = lPlages.OrderBy(o => o.BorneInferieur).ToList();
+
+                List<PlageValeur<T>> lPlagesFusionnees = new List<PlageValeur<T>>();
+
+                PlageValeur<T> lPlageTest = lPlages[lIndexGlobal];
+
+                for (int lIndexAjout = 0; lIndexAjout < lIndexGlobal; lIndexAjout++)
+                {
+                    //Ajout des plage avant le global
+                    lPlagesFusionnees.Add(lPlages[lIndexAjout]);
+                }
+
+                bool lFusion = false;
+
+                //Parcours du début de l'index global
+                for (int lIndex = lIndexGlobal + 1; lIndex < lPlages.Count; lIndex++)
+                {
+                    List<PlageValeur<T>> lResultat = lPlageTest.EnglobePlageSiPossible(lPlages[lIndex]).ToList();
+
+                    if (lResultat.Count == 1)
+                    {
+                        lFusion = true;
+                    }
+
+                    lPlagesFusionnees.AddRange(lResultat);
+                }
+
+
+                lPlagesFusionnees = lPlagesFusionnees.Distinct().ToList();
+
+                if (lFusion)
+                {
+                    //Y'a au moins une fusion de plage donc faut jarter la plage de test
+                    lPlagesFusionnees.Remove(lPlageTest);
+                }
+
+
+
+                if (lPlages.Count == lPlagesFusionnees.Count && lIndexGlobal >= lPlages.Count - 2)
+                {
+                    //Plus de fusion possible
+                    if (lFin)
+                    {
+                        break;
+                    }
+                    //Un tour en plus pour la peine
+                    lFin = true;
+
+                }
+                else if (lPlages.Count == lPlagesFusionnees.Count)
+                {
+                    //Rien qui bouge on passe au suivant
+                    lIndexGlobal++;
+                }
+                else
+                {
+                    lPlages = lPlagesFusionnees;
+                    lIndexGlobal = 0;
+                    lFin = false;
+                }
+
+
+            } while (true);
+
+            return lPlages;
+        }
     }
 }

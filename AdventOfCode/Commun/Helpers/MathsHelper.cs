@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode.Commun.ObjetsUtilitaire;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,5 @@ namespace AdventOfCode.Commun.Helpers
 
             return PlusGrandCommunDiviseur(pNombre2, lTemp);
         }
-
     }
 }
